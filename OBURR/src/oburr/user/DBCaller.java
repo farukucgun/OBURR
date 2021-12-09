@@ -4,12 +4,20 @@
  */
 package oburr.user;
 
+import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
 public class DBCaller {
 
     public static final String connectionString = "";
     public static final String connectionUserName = "";
     public static final String connectionPassword = "";
 
+    private Connection connection;
+
+    public void setConnection(){}
     public void insertUser(User user){}
     public void updatePassword(User user){}
     public void updateName(User user){}
