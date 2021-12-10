@@ -7,7 +7,8 @@ package oburr.user;
 
 public interface Editable {
 
-    void setIsEditable(boolean isEditable);
+    void lock();
+    void unlock();
     boolean check(String password);
     boolean getIsEditable();
 

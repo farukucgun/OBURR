@@ -4,10 +4,13 @@
  */
 package oburr.searching;
 
+import java.util.ArrayList;
+
 public class Recipe {
 
-    private String recipeName,recipeResource,recipeIngredients, recipeSteps, nutritionFacts;
-    int totalTime, calories;
+    private String recipeName,recipeResource, recipeSteps, nutritionFacts;
+    private ArrayList<Ingredient> recipeIngredients;
+    private int totalTime, calories;
 
     public void setRecipeName(String recipeName){
         this.recipeName = recipeName;
@@ -18,7 +21,7 @@ public class Recipe {
         this.recipeResource = recipeResource;
     }
 
-    public void setRecipeIngredients(String recipeIngredients){
+    public void setRecipeIngredients(ArrayList<Ingredient> recipeIngredients){
         this.recipeIngredients = recipeIngredients;
     }
 
@@ -36,6 +39,16 @@ public class Recipe {
 
     public void setCalories(int calories){
         this.calories = calories;
+    }
+
+    public boolean included(Ingredient ingredient){
+        for(int i = 0; i < recipeIngredients.size(); i++){
+            if(recipeIngredients.get(i).getName().indexOf(ingredient.getName()) >= 0){
+                return true;
+            }
+        }
+
+        return false;
     }
 
 
