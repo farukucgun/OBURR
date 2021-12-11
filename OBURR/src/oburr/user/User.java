@@ -11,6 +11,7 @@ public class User implements Editable{
 
     private String name;
     private String password;
+    private int userId;
     private char dietType;
     private boolean isEditable;
 
@@ -25,6 +26,7 @@ public class User implements Editable{
     public void setDietType(char dietType){
         this.dietType = dietType;
     }
+    public void setUserId(int userId){this.userId = userId;}
 
     public void setDislikedIngredients(ArrayList<Ingredient> dislikedIngredients){
         this.dislikedIngredients = dislikedIngredients;
@@ -43,25 +45,38 @@ public class User implements Editable{
         isEditable = true;
     }
 
+
+    public void updateName(String name){}
+
     public void updatePassword(String password){
         check(password);
 
         if(isEditable){
             this.name = name;
             DBCaller dbCaller = new DBCaller();
+            dbCaller.updatePassword(this);
         }
 
         lock();
     }
-    public void updateName(String name){}
-    public void updateLikedItems(){}
-    public void updateDislikedItems(){}
+
+    public void updateLikedItems(){
+        DBCaller dbCaller = new DBCaller();
+        dbCaller.updateLiked(this);
+
+    }
+    public void updateDislikedItems(){
+        DBCaller dbCaller = new DBCaller();
+        dbCaller.updateDisliked(this);
+    }
     public void updateDiet(){}
     public void setIsEditable(boolean isEditable){
         this.isEditable = isEditable;
     }
 
     public String getName(){ return name;}
+    public int getUserId(){ return userId;}
+    public String getPassword(){ return password;}
     public char getDietType(){ return dietType;}
     public boolean getIsEditable(){ return isEditable;}
     public ArrayList<Ingredient> getDisLikedIngredients(){ return dislikedIngredients;}
