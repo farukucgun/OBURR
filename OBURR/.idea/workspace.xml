@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0ec3552-4498-4d68-b083-84fe7ea48a72" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/oburr/searching/SearchableResource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oburr/searching/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/Ingredient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oburr/searching/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/Recipe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oburr/searching/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/Resource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oburr/searching/SearchableResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/SearchableResource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +57,7 @@
       <workItem from="1639206657328" duration="12846000" />
       <workItem from="1639228472067" duration="529000" />
       <workItem from="1639231359938" duration="595000" />
+      <workItem from="1639238218779" duration="1560000" />
     </task>
     <servers />
   </component>

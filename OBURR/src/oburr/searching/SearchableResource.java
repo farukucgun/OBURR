@@ -21,31 +21,36 @@ public class SearchableResource extends Resource{
     private String resultPath,imagePath,descriptionPath, ingredientPath, totalTimePath,caloriesPath;
 
 
-    public SearchableResource(String defaultLink, User user, String imagePath, String descriptionPath, String totalTimePath, String caloriesPath){
-        super(defaultLink, user);
+    public SearchableResource(String platformName, String defaultLink, User user, String imagePath,
+                              String descriptionPath, String totalTimePath, String caloriesPath){
+
+        super(platformName, defaultLink, user);
         setImagePath(imagePath);
         setDescriptionPath(descriptionPath);
         setTotalTimePath(totalTimePath);
         setCaloriesPath(caloriesPath);
     }
 
-    /*public ArrayList<Recipe> ingredientSearch(ArrayList<Ingredient> ingredients){
-
-    }*/
-
-    public String includeIngedients(ArrayList<Ingredient> ingredients){
+    public String includeIngredients(ArrayList<Ingredient> ingredients, String search){
         String link = new String(defaultLink);
 
-        for(Ingredient ingredient: ingredients){
-            String name = ingredient.getName();
+        int ingredientCount = 0;
 
+        for(Ingredient ingredient: ingredients){
+
+            if(ingredientCount > 0){
+                link += "&";
+            }
+
+            link += "IngIncl=" + ingredient.getName();
         }
 
+        return link;
     }
 
     public String updatedURL(String search){
 
-        String updatedURL = new String(defaultLink);
+        String updatedURL = new String(defaultLink) + "search=";
         Scanner reader = new Scanner(search);
 
         reader.useDelimiter("[^A-Za-zİğ]");
@@ -77,6 +82,7 @@ public class SearchableResource extends Resource{
         try {
             Document doc = Jsoup.connect(url).get();
             Elements results = doc.select(resultPath);
+            ArrayList<Recipe> recipes = new ArrayList<Recipe>();
 
             for(Element result: results){
 
@@ -101,7 +107,7 @@ public class SearchableResource extends Resource{
                 int recipeTime = Integer.parseInt(recipePage.selectXpath(totalTimePath).text());
                 int calories = ((int) Double.parseDouble(recipePage.selectXpath(caloriesPath).text()));
 
-
+                return recipes;
             }
 
 
@@ -110,7 +116,7 @@ public class SearchableResource extends Resource{
             System.out.println("It doesnt work out mate");
 
         }
-
+        return null;
     }
 
 
