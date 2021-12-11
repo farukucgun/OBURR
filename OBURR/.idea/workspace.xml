@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0ec3552-4498-4d68-b083-84fe7ea48a72" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/oburr/searching/SearchableResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/oburr/searching/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/Ingredient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oburr/user/DBCaller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/user/DBCaller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oburr/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oburr/searching/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/Recipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oburr/searching/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/Resource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,11 +35,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../../DataTest" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -56,7 +57,9 @@
       <workItem from="1639142323684" duration="330000" />
       <workItem from="1639164271441" duration="416000" />
       <workItem from="1639206351435" duration="47000" />
-      <workItem from="1639206657328" duration="4920000" />
+      <workItem from="1639206657328" duration="12846000" />
+      <workItem from="1639228472067" duration="529000" />
+      <workItem from="1639231359938" duration="595000" />
     </task>
     <servers />
   </component>

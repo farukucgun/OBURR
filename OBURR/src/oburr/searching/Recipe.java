@@ -12,6 +12,16 @@ public class Recipe {
     private ArrayList<Ingredient> recipeIngredients;
     private int totalTime, calories;
 
+    public Recipe(String recipeName, String recipeResource, ArrayList<Ingredient> recipeIngredients,
+                  String recipeSteps, int totalTime, int calories){
+        setRecipeName(recipeName);
+        setRecipeResource(recipeResource);
+        setRecipeIngredients(recipeIngredients);
+        setRecipeSteps(recipeSteps);
+        setTotalTime(totalTime);
+        setCalories(calories);
+    }
+
     public void setRecipeName(String recipeName){
         this.recipeName = recipeName;
     }

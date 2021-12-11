@@ -6,15 +6,19 @@ public class Ingredient {
     private String quantity;
     private String detail;
 
-    public Ingredient(String name, String quantity, String detail){
-        setName(name);
-        setQuantity(quantity);
-        setDetail(detail);
+    public Ingredient(String description){
+        analyzeDescription(description);
     }
 
     public void setName(String name){
 
         this.name = name;
+    }
+
+    public void analyzeDescription(String description){
+
+
+
     }
 
     public void setQuantity(String quantity){
