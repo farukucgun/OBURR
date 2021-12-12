@@ -1,9 +1,12 @@
+/**
+ *@CenkOlcay
+ *java version 16.0.1
+ */
+
 package oburr.searching;
 
 import oburr.user.User;
 
-import java.awt.*;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,9 +15,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
 
+/**
+ * a class to define and use the searching functions of the resource that will be used for scrapping
+ */
 public class SearchableResource extends Resource{
 
     private String searchURL;
@@ -48,9 +52,13 @@ public class SearchableResource extends Resource{
         return link;
     }
 
-    public String updatedURL(String search){
+    public String updatedURL(String baseURL, String search){
 
-        String updatedURL = new String(defaultLink) + "search=";
+        if(search == null || search.equals("")){
+            return baseURL;
+        }
+
+        String updatedURL = new String(baseURL) + "search=";
         Scanner reader = new Scanner(search);
 
         reader.useDelimiter("[^A-Za-zİğ]");
@@ -70,14 +78,9 @@ public class SearchableResource extends Resource{
     }
 
     @Override
-    public String includeIngredients(String search) {
-        return null;
-    }
+    public ArrayList<Recipe> findRecipes( ArrayList<Ingredient> ingredients ,String search) {
 
-    @Override
-    public ArrayList<Recipe> findRecipe(String search) {
-
-        String url = updatedURL(search);
+        String url = includeIngredients(ingredients, search);
 
         try {
             Document doc = Jsoup.connect(url).get();

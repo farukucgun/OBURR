@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d0ec3552-4498-4d68-b083-84fe7ea48a72" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oburr/searching/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/Resource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/oburr/searching/SearchableResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/SearchableResource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +33,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../TestProjects/DataTest" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -57,7 +58,8 @@
       <workItem from="1639206657328" duration="12846000" />
       <workItem from="1639228472067" duration="529000" />
       <workItem from="1639231359938" duration="595000" />
-      <workItem from="1639238218779" duration="1560000" />
+      <workItem from="1639238218779" duration="2154000" />
+      <workItem from="1639290471250" duration="1302000" />
     </task>
     <servers />
   </component>
