@@ -22,14 +22,14 @@ import org.jsoup.select.Elements;
 public class SearchableResource extends Resource{
 
     private String searchURL;
-    private String resultPath,imagePath,descriptionPath, ingredientPath, totalTimePath,caloriesPath;
+    private String resultPath,descriptionPath, ingredientPath, totalTimePath,caloriesPath;
 
 
-    public SearchableResource(String platformName, String defaultLink, User user, String imagePath,
-                              String descriptionPath, String totalTimePath, String caloriesPath){
+    public SearchableResource(String platformName, String defaultLink, User user,
+                              String descriptionPath, String ingredientPath, String totalTimePath, String caloriesPath){
 
         super(platformName, defaultLink, user);
-        setImagePath(imagePath);
+        setIngredientPath(ingredientPath);
         setDescriptionPath(descriptionPath);
         setTotalTimePath(totalTimePath);
         setCaloriesPath(caloriesPath);
@@ -94,7 +94,7 @@ public class SearchableResource extends Resource{
                 String recipeTitle = recipePage.title();
                 ArrayList<Ingredient> recipeIngredients = new ArrayList<Ingredient>();
                 String recipeDescription = "";
-                String imageURL = recipePage.attr("data-src");
+                String imageURL = result.select("img").attr("src");
 
                 for(Element ingredient: recipePage.select(ingredientPath)){
                     recipeIngredients.add(new Ingredient(ingredient.text()));
@@ -122,9 +122,8 @@ public class SearchableResource extends Resource{
         return null;
     }
 
-
-    public void setImagePath(String imagePath){this.imagePath = imagePath;}
     public void setDescriptionPath(String descriptionPath){this.descriptionPath = descriptionPath;}
+    public void setIngredientPath(String ingredientPath){ this.ingredientPath = ingredientPath; }
     public void setTotalTimePath(String totalTimePath){this.totalTimePath = totalTimePath;}
     public void setCaloriesPath(String caloriesPath){this.caloriesPath = caloriesPath;}
 
