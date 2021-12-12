@@ -25,10 +25,11 @@ public class SearchableResource extends Resource{
     private String resultPath,descriptionPath, ingredientPath, totalTimePath,caloriesPath;
 
 
-    public SearchableResource(String platformName, String defaultLink, User user,
+    public SearchableResource(String platformName, String defaultLink, User user, String resultPath,
                               String descriptionPath, String ingredientPath, String totalTimePath, String caloriesPath){
 
         super(platformName, defaultLink, user);
+        setResultPath(resultPath);
         setIngredientPath(ingredientPath);
         setDescriptionPath(descriptionPath);
         setTotalTimePath(totalTimePath);
@@ -36,20 +37,21 @@ public class SearchableResource extends Resource{
     }
 
     public String includeIngredients(ArrayList<Ingredient> ingredients, String search){
+
         String link = new String(defaultLink);
+        if(ingredients != null && ingredients.size() != 0){
+            int ingredientCount = 0;
 
-        int ingredientCount = 0;
+            for (Ingredient ingredient : ingredients) {
 
-        for(Ingredient ingredient: ingredients){
+                if (ingredientCount > 0) {
+                    link += "&";
+                }
 
-            if(ingredientCount > 0){
-                link += "&";
+                link += "IngIncl=" + ingredient.getName();
             }
-
-            link += "IngIncl=" + ingredient.getName();
         }
-
-        return link;
+        return updatedURL(link,search);
     }
 
     public String updatedURL(String baseURL, String search){
@@ -85,6 +87,7 @@ public class SearchableResource extends Resource{
         try {
             Document doc = Jsoup.connect(url).get();
             Elements results = doc.select(resultPath);
+            System.out.println(results.size());
             ArrayList<Recipe> recipes = new ArrayList<Recipe>();
 
             for(Element result: results){
@@ -107,21 +110,24 @@ public class SearchableResource extends Resource{
                     recipeDescription += "Step " + (++stepCount) + ": " + "\n" + step.text() + "\n";
                 }
 
-                int recipeTime = Integer.parseInt(recipePage.selectXpath(totalTimePath).text());
-                int calories = ((int) Double.parseDouble(recipePage.selectXpath(caloriesPath).text()));
+                int recipeTime;
+                int calories;
+                recipeTime = 0;
+                calories = 0;
 
-                return recipes;
+                recipes.add(new Recipe(result.text(),platformName,recipeIngredients,recipeDescription,recipeTime,calories));
             }
 
-
+            return recipes;
         }
         catch(Exception exception){
-            System.out.println("It doesnt work out mate");
+            exception.printStackTrace();
 
         }
         return null;
     }
 
+    public void setResultPath(String resultPath){ this.resultPath = resultPath;}
     public void setDescriptionPath(String descriptionPath){this.descriptionPath = descriptionPath;}
     public void setIngredientPath(String ingredientPath){ this.ingredientPath = ingredientPath; }
     public void setTotalTimePath(String totalTimePath){this.totalTimePath = totalTimePath;}
