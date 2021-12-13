@@ -12,7 +12,8 @@ public class Recipe {
     private ArrayList<Ingredient> recipeIngredients;
     private int totalTime, calories;
 
-    public Recipe(String recipeName, String recipeResource, ArrayList<Ingredient> recipeIngredients,
+    public Recipe(String recipeName, String recipeResource,
+                  ArrayList<Ingredient> recipeIngredients,
                   String recipeSteps, int totalTime, int calories){
         setRecipeName(recipeName);
         setRecipeResource(recipeResource);
@@ -60,6 +61,14 @@ public class Recipe {
 
         return false;
     }
+
+    public String getRecipeName(){ return recipeName;}
+    public String getRecipeResource(){ return recipeResource;}
+    public String getRecipeSteps(){ return recipeSteps;}
+    public ArrayList<Ingredient> getRecipeIngredients(){ return recipeIngredients;}
+    public String getNutritionFacts(){ return nutritionFacts;}
+    public int getTotalTime(){ return totalTime;}
+    public int getCalories(){ return calories;}
 
 
 

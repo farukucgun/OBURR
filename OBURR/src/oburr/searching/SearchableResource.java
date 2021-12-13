@@ -79,6 +79,34 @@ public class SearchableResource extends Resource{
         return updatedURL;
     }
 
+    public static int readTime(String timeInfo){
+        int time = 0;
+
+        timeInfo = timeInfo.toLowerCase();
+
+        if(timeInfo.indexOf('h') > 0){
+
+            time += Integer.parseInt(timeInfo.substring(0,timeInfo.indexOf(" ")));
+            time *= 60;
+
+            if(timeInfo.indexOf('m') > 0){
+
+                timeInfo = timeInfo.substring(timeInfo.indexOf("h"));
+
+                time += Integer.parseInt(timeInfo.substring(timeInfo.indexOf(" ")+1,timeInfo.indexOf("m")-1));
+            }
+
+        }
+
+        else if(timeInfo.indexOf('m') > 0){
+            time += Integer.parseInt(timeInfo.substring(0,timeInfo.indexOf(" ")));
+        }
+
+
+
+        return time;
+    }
+
     @Override
     public ArrayList<Recipe> findRecipes( ArrayList<Ingredient> ingredients ,String search) {
 
@@ -87,14 +115,13 @@ public class SearchableResource extends Resource{
         try {
             Document doc = Jsoup.connect(url).get();
             Elements results = doc.select(resultPath);
-            System.out.println(results.size());
             ArrayList<Recipe> recipes = new ArrayList<Recipe>();
 
             for(Element result: results){
+;
+                Document recipePage = Jsoup.connect(result.select(".manual-link-behavior").attr("href")).get();
 
-                Document recipePage = Jsoup.connect(result.attr("href")).get();
-
-                String recipeTitle = recipePage.title();
+                String recipeTitle = result.select(".manual-link-behavior").attr("title");
                 ArrayList<Ingredient> recipeIngredients = new ArrayList<Ingredient>();
                 String recipeDescription = "";
                 String imageURL = result.select("img").attr("src");
@@ -112,10 +139,12 @@ public class SearchableResource extends Resource{
 
                 int recipeTime;
                 int calories;
-                recipeTime = 0;
-                calories = 0;
+                recipeTime = readTime(recipePage.select(totalTimePath).text());
+                calories = 15;
 
-                recipes.add(new Recipe(result.text(),platformName,recipeIngredients,recipeDescription,recipeTime,calories));
+                recipes.add(new Recipe(recipeTitle,platformName,
+                        recipeIngredients,recipeDescription,
+                        recipeTime,calories));
             }
 
             return recipes;
@@ -126,6 +155,9 @@ public class SearchableResource extends Resource{
         }
         return null;
     }
+
+
+
 
     public void setResultPath(String resultPath){ this.resultPath = resultPath;}
     public void setDescriptionPath(String descriptionPath){this.descriptionPath = descriptionPath;}
