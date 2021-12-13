@@ -14,6 +14,7 @@ public class User implements Editable{
     private int userId;
     private char dietType;
     private boolean isEditable;
+    private ArrayList<Ingredient> allergies;
 
     private ArrayList<Ingredient> dislikedIngredients, likedIngredients;
 
@@ -27,6 +28,8 @@ public class User implements Editable{
         this.dietType = dietType;
     }
     public void setUserId(int userId){this.userId = userId;}
+
+    public void setAllergies(ArrayList<Ingredient> allergies){ this.allergies = allergies;}
 
     public void setDislikedIngredients(ArrayList<Ingredient> dislikedIngredients){
         this.dislikedIngredients = dislikedIngredients;
@@ -77,6 +80,7 @@ public class User implements Editable{
     public String getName(){ return name;}
     public int getUserId(){ return userId;}
     public String getPassword(){ return password;}
+    public ArrayList<Ingredient> getAllergies(){ return allergies;}
     public char getDietType(){ return dietType;}
     public boolean getIsEditable(){ return isEditable;}
     public ArrayList<Ingredient> getDisLikedIngredients(){ return dislikedIngredients;}

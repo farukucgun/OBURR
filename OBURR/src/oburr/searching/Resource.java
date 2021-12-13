@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public abstract class Resource {
 
+    public static final int maxResultSize = 20;
 
     protected User user;
     protected String platformName, defaultLink;
@@ -26,11 +27,10 @@ public abstract class Resource {
 
     }
 
-    public void excludeDislikes(ArrayList<Recipe> results){
-        for(Ingredient dislikedIngredient: user.getDisLikedIngredients()){
-
+    public void excludeAllergies(ArrayList<Recipe> results){
+        for(Ingredient allergen: user.getAllergies()){
             for(int i = 0; i < results.size(); i++){
-                if(results.get(i).included(dislikedIngredient)){
+                if(results.get(i).included(allergen)){
                     results.remove(i);
                 }
             }
@@ -39,7 +39,9 @@ public abstract class Resource {
 
     public abstract String updatedURL(String baseURL, String search);
 
-    public abstract ArrayList<Recipe> findRecipes(ArrayList<Ingredient> ingredients, String search);
+    public abstract ArrayList<SearchResult> findResults(ArrayList<Ingredient> ingredients, String search);
+
+    public abstract Recipe getRecipe(SearchResult result);
 
     public void setPlatformName(String platformName){
         this.platformName = platformName;
