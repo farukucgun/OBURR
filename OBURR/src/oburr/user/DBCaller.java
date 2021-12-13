@@ -24,7 +24,7 @@ public class DBCaller {
     public void setConnection(){
         try {
             connection = DriverManager.getConnection(connectionString, connectionUserName, connectionPassword);
-            statement = connection.createStatement();
+            statement = connection.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         }
         catch(SQLException sqlException){
             sqlException.printStackTrace();
@@ -37,7 +37,7 @@ public class DBCaller {
         setConnection();
         if(statement != null) {
             try {
-                statement.executeQuery(query);
+                statement.execute(query);
                 statement.close();
                 connection.close();
             }
@@ -60,21 +60,20 @@ public class DBCaller {
                 sqlException.printStackTrace();
             }
         }
-
         return false;
     }
 
 
     public void insertUser(User user){
         String query = "INSERT INTO oburr_userInfo (user_name,user_password) " +
-                "VALUES(" + user.getName() + ", " +  user.getPassword() + ")";
+                "VALUES( '" + user.getName() + "', '" +  user.getPassword() + "')";
 
         updateDB(query);
 
         query = "INSERT INTO oburr_userLikesAndDislikes(user_id,oburr_userLikes,oburr_userDislikes)" +
          "VALUES(" + user.getUserId() + "," + user.getLikedIngredients() + "," +user.getDisLikedIngredients() + ")";
 
-        updateDB(query);
+        //updateDB(query);
     }
 
     public void updateName(User user){
