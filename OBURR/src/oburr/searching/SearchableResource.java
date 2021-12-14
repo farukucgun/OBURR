@@ -23,15 +23,19 @@ public class SearchableResource extends Resource{
 
 
     private String searchURL;
-    private String resultPath,descriptionPath, ingredientPath, totalTimePath, nutritionFactsPath;
+    private String resultPath, linkPath, titlePath,
+            descriptionPath, ingredientPath, totalTimePath, nutritionFactsPath;
 
 
-    public SearchableResource(String platformName, String defaultLink, User user, String resultPath,
+    public SearchableResource(String platformName, String defaultLink, User user,
+                              String resultPath, String titlePath, String linkPath,
                               String descriptionPath, String ingredientPath,
                               String totalTimePath, String nutritionFactsPath){
 
         super(platformName, defaultLink, user);
         setResultPath(resultPath);
+        setTitlePath(titlePath);
+        setLinkPath(linkPath);
         setIngredientPath(ingredientPath);
         setDescriptionPath(descriptionPath);
         setTotalTimePath(totalTimePath);
@@ -103,6 +107,7 @@ public class SearchableResource extends Resource{
         excludeAllergens();
         String url = includeIngredients(ingredients, search);
 
+        System.out.println(url);
 
         try {
 
@@ -118,14 +123,18 @@ public class SearchableResource extends Resource{
 
                 Element result = resultCards.get(resultCount++);
 
-                String recipeTitle = result.select(".manual-link-behavior").attr("title");
-                String resultURL = result.select(".manual-link-behavior").attr("href");
+                String resultURL = result.select(linkPath).attr("href");
                 String imageURL = result.select("img").attr("src");
-
 
                 Document recipePage = Jsoup.connect(resultURL).get();
                 ArrayList<Ingredient> recipeIngredients = new ArrayList<Ingredient>();
                 String recipeDescription = "";
+
+                String recipeTitle = recipePage.select(titlePath).text();
+
+                if(platformName.equals("MyRecipes.com")){
+                    System.out.println(recipeTitle);
+                }
 
                 for (Element ingredient : recipePage.select(ingredientPath)) {
                     recipeIngredients.add(new Ingredient(ingredient.text()));
@@ -173,6 +182,8 @@ public class SearchableResource extends Resource{
 
 
     public void setResultPath(String resultPath){ this.resultPath = resultPath;}
+    public void setTitlePath(String titlePath){ this.titlePath = titlePath;}
+    public void setLinkPath(String linkPath){ this.linkPath = linkPath;}
     public void setDescriptionPath(String descriptionPath){this.descriptionPath = descriptionPath;}
     public void setIngredientPath(String ingredientPath){ this.ingredientPath = ingredientPath; }
     public void setTotalTimePath(String totalTimePath){this.totalTimePath = totalTimePath;}

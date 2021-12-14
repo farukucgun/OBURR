@@ -5,7 +5,6 @@
 package oburr.searching;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 
 public class Recipe {
@@ -55,7 +54,8 @@ public class Recipe {
 
     public boolean included(Ingredient ingredient){
         for(int i = 0; i < recipeIngredients.size(); i++){
-            if(recipeIngredients.get(i).toString().indexOf(ingredient.toString()) >= 0){
+            if(recipeIngredients.get(i).toString().indexOf(ingredient.toString() + " ") >= 0
+            || recipeIngredients.get(i).toString().indexOf(ingredient.toString() + ",") >= 0){
                 return true;
             }
         }
