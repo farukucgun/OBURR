@@ -16,8 +16,9 @@ public class Recipe {
     private int difficultyLevel;
     private int calories;
 
-    public Recipe(String recipeName, String recipeResource, String imageUrl, ArrayList<Ingredient> recipeIngredients,
+    public Recipe(String recipeName, String repiceResource, String imageUrl, ArrayList<Ingredient> recipeIngredients,
                   String recipeSteps, String timeInfo, String nutritionFacts){
+
         setRecipeName(recipeName);
         setRecipeResource(recipeResource);
         setImageUrl(imageUrl);
@@ -29,6 +30,7 @@ public class Recipe {
 
         setDifficultyLevel();
     }
+
 
     public void setRecipeName(String recipeName){
         this.recipeName = recipeName;
@@ -64,18 +66,20 @@ public class Recipe {
     public int readCalories(String nutritionFacts){
         int caloriesIntake = 0;
 
+
         int caloriesIndex = nutritionFacts.indexOf("calories");
 
-        nutritionFacts = nutritionFacts.toLowerCase();
+            nutritionFacts = nutritionFacts.toLowerCase();
 
-        if(caloriesIndex >= 0){
-            int index = 0;
-            while(!Character.isDigit(nutritionFacts.charAt(index))){
-                index++;
+            if (caloriesIndex >= 0) {
+                int index = 0;
+                while (!Character.isDigit(nutritionFacts.charAt(index))) {
+                    index++;
+                }
+
+                caloriesIntake = (int) Double.parseDouble(nutritionFacts.substring(index, caloriesIndex));
             }
 
-            caloriesIntake = (int)Double.parseDouble(nutritionFacts.substring(index,caloriesIndex));
-        }
 
         return caloriesIntake;
     }

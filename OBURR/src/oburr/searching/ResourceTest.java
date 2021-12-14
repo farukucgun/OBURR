@@ -10,6 +10,12 @@ public class ResourceTest {
 
         User user = new User();
 
+
+        ArrayList<Ingredient> allergies = new ArrayList<Ingredient>();
+        allergies.add(new Ingredient("garlic"));
+
+        user.setAllergies(allergies);
+
         Resource allRecipes = new SearchableResource(
                 "AllRecipes.com",
                 "https://www.allrecipes.com/search/results/?",
@@ -22,25 +28,27 @@ public class ResourceTest {
                 );
 
 
-        ArrayList<SearchResult> results = allRecipes.findResults(null,"baba");
-
         long now = System.currentTimeMillis();
 
-        ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+        ArrayList<Recipe> results = allRecipes.findResults(null,"potato");
+
 
         for(int i = 0; i < results.size(); i++){
-            recipes.add(allRecipes.getRecipe(results.get(i)));
+            System.out.println(results.get(i).getRecipeName());
         }
 
-        for(int i = 0; i < recipes.size(); i++){
-            System.out.println((i+1) + "-" + recipes.get(i).getCalories());
+
+        for(int i = 0; i < results.size(); i++){
+            System.out.println(results.get(i).getDifficultyLevel());
+
         }
 
+        /**
         Collections.sort(recipes,new SortByCalories());
 
         for(int i = 0; i < recipes.size(); i++){
-            System.out.println((i+1) + "-" + recipes.get(i).getCalories());
-        }
+            System.out.println((i+1) + "-" + recipes.get(i).getRecipeName());
+        }*/
 
         long now2 = System.currentTimeMillis();
 

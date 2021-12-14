@@ -39,9 +39,9 @@ public abstract class Resource {
 
     public abstract String updatedURL(String baseURL, String search);
 
-    public abstract ArrayList<SearchResult> findResults(ArrayList<Ingredient> ingredients, String search);
+    public abstract ArrayList<Recipe> findResults(ArrayList<Ingredient> ingredients, String search);
 
-    public abstract Recipe getRecipe(SearchResult result);
+    public abstract void excludeAllergens();
 
     public void setPlatformName(String platformName){
         this.platformName = platformName;

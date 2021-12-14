@@ -22,6 +22,7 @@ import org.jsoup.select.Elements;
 public class SearchableResource extends Resource{
 
 
+    private String searchURL;
     private String resultPath,descriptionPath, ingredientPath, totalTimePath, nutritionFactsPath;
 
 
@@ -39,20 +40,35 @@ public class SearchableResource extends Resource{
 
     public String includeIngredients(ArrayList<Ingredient> ingredients, String search){
 
-        String link = new String(defaultLink);
+
         if(ingredients != null && ingredients.size() != 0){
-            int ingredientCount = 0;
 
             for (Ingredient ingredient : ingredients) {
 
-                if (ingredientCount > 0) {
-                    link += "&";
-                }
+                searchURL += "IngIncl=" + ingredient.toString();
 
-                link += "IngIncl=" + ingredient.toString();
+                searchURL += "&";
+
             }
         }
-        return updatedURL(link,search);
+
+        return updatedURL(searchURL,search);
+    }
+
+    public void excludeAllergens() {
+
+        searchURL = new String(defaultLink);
+
+        if(user.getAllergies() != null && user.getAllergies().size() != 0){
+
+            for (Ingredient allergen : user.getAllergies()) {
+
+                searchURL += "IngExcl=" + allergen.toString();
+
+                searchURL += "&";
+
+            }
+        }
     }
 
     public String updatedURL(String baseURL, String search){
@@ -61,7 +77,7 @@ public class SearchableResource extends Resource{
             return baseURL;
         }
 
-        String updatedURL = new String(baseURL) + "search=";
+        String updatedURL = baseURL + "search=";
         Scanner reader = new Scanner(search);
 
         reader.useDelimiter("[^A-Za-zİğ]");
@@ -80,52 +96,13 @@ public class SearchableResource extends Resource{
         return updatedURL;
     }
 
-    public Recipe getRecipe(SearchResult searchResult) {
-
-        try {
-            Document recipePage = Jsoup.connect(searchResult.getUrl()).get();
-
-            String recipeTitle = searchResult.getResultTitle();
-
-            ArrayList<Ingredient> recipeIngredients = new ArrayList<Ingredient>();
-            String recipeDescription = "";
-            String imageUrl = searchResult.getImageURL();
-
-            for (Element ingredient : recipePage.select(ingredientPath)) {
-                recipeIngredients.add(new Ingredient(ingredient.text()));
-            }
-
-            int stepCount = 0;
-
-
-            for (Element step : recipePage.select(descriptionPath)) {
-                recipeDescription += "Step " + (++stepCount) + ": " + "\n" + step.text() + "\n";
-            }
-
-            String recipeTimeInfo = recipePage.select(totalTimePath).text();
-
-
-            String nutritionFacts = recipePage.select(nutritionFactsPath).first().text();
-            nutritionFacts = nutritionFacts.substring(0,nutritionFacts.lastIndexOf('.'));
-
-
-            return new Recipe(recipeTitle, platformName,imageUrl,
-                    recipeIngredients, recipeDescription,
-                    recipeTimeInfo, nutritionFacts);
-        }
-
-        catch(Exception exception){
-        exception.printStackTrace();
-        }
-
-    return null;
-    }
-
 
     @Override
-    public ArrayList<SearchResult> findResults( ArrayList<Ingredient> ingredients, String search) {
+    public ArrayList<Recipe> findResults( ArrayList<Ingredient> ingredients, String search) {
 
+        excludeAllergens();
         String url = includeIngredients(ingredients, search);
+
 
         try {
 
@@ -133,7 +110,7 @@ public class SearchableResource extends Resource{
 
             Document doc = Jsoup.connect(url).get();
             Elements resultCards = doc.select(resultPath);
-            ArrayList<SearchResult> results = new ArrayList<SearchResult>();
+            ArrayList<Recipe> results = new ArrayList<Recipe>();
 
             int resultCount = 0;
 
@@ -145,7 +122,38 @@ public class SearchableResource extends Resource{
                 String resultURL = result.select(".manual-link-behavior").attr("href");
                 String imageURL = result.select("img").attr("src");
 
-                results.add(new SearchResult(recipeTitle,platformName,resultURL,imageURL));
+
+                Document recipePage = Jsoup.connect(resultURL).get();
+                ArrayList<Ingredient> recipeIngredients = new ArrayList<Ingredient>();
+                String recipeDescription = "";
+
+                for (Element ingredient : recipePage.select(ingredientPath)) {
+                    recipeIngredients.add(new Ingredient(ingredient.text()));
+                }
+
+                int stepCount = 0;
+
+
+                for (Element step : recipePage.select(descriptionPath)) {
+                    recipeDescription += "Step " + (++stepCount) + ": " + "\n" + step.text() + "\n";
+                }
+
+                String recipeTimeInfo = "",
+                        nutritionFacts = "";
+
+                if(recipePage.select(totalTimePath).first() != null) {
+                    recipeTimeInfo = recipePage.select(totalTimePath).first().text();
+                }
+
+                if(recipePage.select(nutritionFactsPath).first() != null) {
+                    nutritionFacts = recipePage.select(nutritionFactsPath).first().text();
+
+                    nutritionFacts = nutritionFacts.substring(0, nutritionFacts.lastIndexOf('.'));
+                }
+
+                results.add(new Recipe(recipeTitle, platformName, imageURL,
+                            recipeIngredients, recipeDescription,
+                            recipeTimeInfo, nutritionFacts));
             }
 
             long now2 = System.currentTimeMillis();
