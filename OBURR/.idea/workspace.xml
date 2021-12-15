@@ -2,14 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0ec3552-4498-4d68-b083-84fe7ea48a72" name="Changes" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/src/oburr/searching/OnlySearchableResource.java" afterDir="false" />
+=======
+<<<<<<< Updated upstream
+      <change afterPath="$PROJECT_DIR$/src/oburr/searching/SearchableResource.java" afterDir="false" />
+>>>>>>> main
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/Resource.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/Resource.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/ResourceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/ResourceTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SearchableResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SearchableResource.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/oburr/searching/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/Resource.java" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/oburr/searching/ResourceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/ResourceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/oburr/searching/SearchableResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/SearchableResource.java" afterDir="false" />
+=======
+=======
+      <change afterPath="$PROJECT_DIR$/src/oburr/user/Deneme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OBURR.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OBURR.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oburr/user/DBCaller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/user/DBCaller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oburr/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/user/User.java" afterDir="false" />
+>>>>>>> Stashed changes
+>>>>>>> main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +44,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="220yHt1Zkde67BTJb58MWLORmQn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -38,19 +58,33 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< Updated upstream
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.27.jar" />
+    <property name="project.structure.last.edited" value="Modules" />
+>>>>>>> Stashed changes
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunManager">
+<<<<<<< HEAD
     <configuration name="ResourceTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="oburr.searching.ResourceTest" />
       <module name="OBURR" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="oburr.searching.*" />
+=======
+    <configuration name="Tester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="oburr.user.Tester" />
+      <module name="OBURR" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="oburr.user.*" />
+>>>>>>> main
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -60,7 +94,11 @@
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< HEAD
         <item itemvalue="Application.ResourceTest" />
+=======
+        <item itemvalue="Application.Tester" />
+>>>>>>> main
       </list>
     </recent_temporary>
   </component>
@@ -80,9 +118,11 @@
       <workItem from="1639142323684" duration="330000" />
       <workItem from="1639164271441" duration="416000" />
       <workItem from="1639206351435" duration="47000" />
+<<<<<<< Updated upstream
       <workItem from="1639206657328" duration="12846000" />
       <workItem from="1639228472067" duration="529000" />
       <workItem from="1639231359938" duration="595000" />
+<<<<<<< HEAD
       <workItem from="1639238218779" duration="2154000" />
       <workItem from="1639290471250" duration="1302000" />
       <workItem from="1639301050476" duration="985000" />
@@ -108,8 +148,20 @@
       <workItem from="1639499363704" duration="1835000" />
       <workItem from="1639508129123" duration="3775000" />
       <workItem from="1639554551161" duration="3184000" />
+=======
+=======
+      <workItem from="1639206657328" duration="4920000" />
+      <workItem from="1639222719782" duration="2551000" />
+      <workItem from="1639244959037" duration="1828000" />
+      <workItem from="1639307831568" duration="1294000" />
+      <workItem from="1639333520900" duration="2107000" />
+>>>>>>> Stashed changes
+>>>>>>> main
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -121,6 +173,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
