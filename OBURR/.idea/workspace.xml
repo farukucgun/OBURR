@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0ec3552-4498-4d68-b083-84fe7ea48a72" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/oburr/searching/OnlySearchableResource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/Resource.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/Resource.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/ResourceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/ResourceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SearchResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oburr/searching/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/Recipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SearchableResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SearchableResource.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/oburr/searching/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/Resource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/oburr/searching/ResourceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/ResourceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/oburr/searching/SearchResult.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/oburr/searching/SearchableResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/SearchableResource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,6 +107,7 @@
       <workItem from="1639491850374" duration="901000" />
       <workItem from="1639499363704" duration="1835000" />
       <workItem from="1639508129123" duration="3775000" />
+      <workItem from="1639554551161" duration="3184000" />
     </task>
     <servers />
   </component>

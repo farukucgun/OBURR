@@ -14,11 +14,14 @@ public abstract class Resource {
 
     protected User user;
     protected String platformName, defaultLink;
+    protected boolean ingredientSearchAvailable;
+    protected ArrayList<Recipe> results;
 
-    public Resource(String platformName, String defaultLink, User user){
+    public Resource(String platformName, String defaultLink, boolean ingredientSearchAvailable, User user){
 
         setPlatformName(platformName);
         setDefaultLink(defaultLink);
+        setIngredientSearchAvailable(ingredientSearchAvailable);
         setUser(user);
 
     }
@@ -27,6 +30,7 @@ public abstract class Resource {
     public abstract ArrayList<Recipe> findResults(ArrayList<Ingredient> ingredients, String search);
     public abstract void excludeAllergens();
 
+    public void setIngredientSearchAvailable(boolean ingredientSearchAvailable){ this.ingredientSearchAvailable = ingredientSearchAvailable;}
     public void setPlatformName(String platformName){
         this.platformName = platformName;
     }
@@ -36,5 +40,7 @@ public abstract class Resource {
     public void setUser(User user){
         this.user = user;
     }
+
+    public void createResultsList(){ results = new ArrayList<Recipe>(maxResultSize);}
 
 }

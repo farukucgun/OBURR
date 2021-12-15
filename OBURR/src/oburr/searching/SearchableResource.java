@@ -22,17 +22,19 @@ import org.jsoup.select.Elements;
 public class SearchableResource extends Resource{
 
 
-    private String searchURL;
-    private String resultPath, linkPath, titlePath,
+    protected String searchURL;
+    protected String searchKeyWord, resultPath, linkPath, titlePath,
             descriptionPath, ingredientPath, totalTimePath, nutritionFactsPath;
 
 
-    public SearchableResource(String platformName, String defaultLink, User user,
-                              String resultPath, String titlePath, String linkPath,
+    public SearchableResource(String platformName, String defaultLink, boolean ingredientSearchAvailable,
+                              User user,
+                              String searchKeyWord, String resultPath, String titlePath, String linkPath,
                               String descriptionPath, String ingredientPath,
                               String totalTimePath, String nutritionFactsPath){
 
-        super(platformName, defaultLink, user);
+        super(platformName, defaultLink, ingredientSearchAvailable, user);
+        setSearchKeyWord(searchKeyWord);
         setResultPath(resultPath);
         setTitlePath(titlePath);
         setLinkPath(linkPath);
@@ -42,8 +44,7 @@ public class SearchableResource extends Resource{
         setNutritionFactsPath(nutritionFactsPath);
     }
 
-    public String includeIngredients(ArrayList<Ingredient> ingredients, String search){
-
+    public void includeIngredients(ArrayList<Ingredient> ingredients, String search){
 
         if(ingredients != null && ingredients.size() != 0){
 
@@ -56,12 +57,9 @@ public class SearchableResource extends Resource{
             }
         }
 
-        return updatedURL(searchURL,search);
     }
 
     public void excludeAllergens() {
-
-        searchURL = new String(defaultLink);
 
         if(user.getAllergies() != null && user.getAllergies().size() != 0){
 
@@ -81,7 +79,7 @@ public class SearchableResource extends Resource{
             return baseURL;
         }
 
-        String updatedURL = baseURL + "search=";
+        String updatedURL = baseURL + searchKeyWord;
         Scanner reader = new Scanner(search);
 
         reader.useDelimiter("[^A-Za-zİğ]");
@@ -104,8 +102,18 @@ public class SearchableResource extends Resource{
     @Override
     public ArrayList<Recipe> findResults( ArrayList<Ingredient> ingredients, String search) {
 
+        createResultsList();
+
+        searchURL = new String(defaultLink);
+
+        if(ingredientSearchAvailable){
         excludeAllergens();
-        String url = includeIngredients(ingredients, search);
+        }
+
+        includeIngredients(ingredients, search);
+
+
+        String url = updatedURL(searchURL,search);
 
         System.out.println(url);
 
@@ -115,7 +123,6 @@ public class SearchableResource extends Resource{
 
             Document doc = Jsoup.connect(url).get();
             Elements resultCards = doc.select(resultPath);
-            ArrayList<Recipe> results = new ArrayList<Recipe>();
 
             int resultCount = 0;
 
@@ -132,17 +139,13 @@ public class SearchableResource extends Resource{
 
                 String recipeTitle = recipePage.select(titlePath).text();
 
-                if(platformName.equals("MyRecipes.com")){
-                    System.out.println(recipeTitle);
-                }
 
                 for (Element ingredient : recipePage.select(ingredientPath)) {
-                    recipeIngredients.add(new Ingredient(ingredient.text()));
+                    recipeIngredients.add(new Ingredient(ingredient.text() + " "));
                 }
 
+
                 int stepCount = 0;
-
-
                 for (Element step : recipePage.select(descriptionPath)) {
                     recipeDescription += "Step " + (++stepCount) + ": " + "\n" + step.text() + "\n";
                 }
@@ -165,9 +168,13 @@ public class SearchableResource extends Resource{
                             recipeTimeInfo, nutritionFacts));
             }
 
+            if(!ingredientSearchAvailable){
+                excludeAllergens();
+            }
+
             long now2 = System.currentTimeMillis();
 
-            System.out.println(now2-now);
+            System.out.println((now2-now)/1000);
 
             return results;
         }
@@ -182,6 +189,7 @@ public class SearchableResource extends Resource{
 
 
     public void setResultPath(String resultPath){ this.resultPath = resultPath;}
+    public void setSearchKeyWord(String searchKeyWord){ this.searchKeyWord = searchKeyWord;}
     public void setTitlePath(String titlePath){ this.titlePath = titlePath;}
     public void setLinkPath(String linkPath){ this.linkPath = linkPath;}
     public void setDescriptionPath(String descriptionPath){this.descriptionPath = descriptionPath;}
