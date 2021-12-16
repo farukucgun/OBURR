@@ -44,6 +44,53 @@ public class SearchableResource extends Resource{
         setNutritionFactsPath(nutritionFactsPath);
     }
 
+    public Recipe getRecipe(SearchResult searchResult) {
+        try {
+
+            long now = System.currentTimeMillis();
+
+            Document recipePage = Jsoup.connect(searchResult.getRecipeUrl()).get();
+            ArrayList<Ingredient> recipeIngredients = new ArrayList<Ingredient>();
+            String recipeDescription = "";
+            String recipeTitle = searchResult.getRecipeTitle();
+            String imageUrl = searchResult.getImageUrl();
+
+            for (Element ingredient : recipePage.select(ingredientPath)) {
+                recipeIngredients.add(new Ingredient(ingredient.text() + " "));
+            }
+
+            int stepCount = 0;
+            for (Element step : recipePage.select(descriptionPath)) {
+
+                recipeDescription += "Step " + (++stepCount) + ": " + "\n" + step.text() + "\n";
+            }
+
+            String recipeTimeInfo = "",
+                    nutritionFacts = "";
+
+            if (recipePage.select(totalTimePath).first() != null) {
+                recipeTimeInfo = recipePage.select(totalTimePath).first().text();
+            }
+
+            if (recipePage.select(nutritionFactsPath).first() != null) {
+                nutritionFacts = recipePage.select(nutritionFactsPath).first().text();
+
+                nutritionFacts = nutritionFacts.substring(0, nutritionFacts.lastIndexOf('.'));
+            }
+
+            return new Recipe(recipeTitle, platformName, imageUrl,
+                        recipeIngredients, recipeDescription,
+                        recipeTimeInfo, nutritionFacts, user);
+        }
+
+        catch(Exception exception){
+            exception.printStackTrace();
+        }
+            return null;
+
+    }
+
+
     public void includeIngredients(ArrayList<Ingredient> ingredients, String search){
 
         if(ingredients != null && ingredients.size() != 0){
@@ -100,9 +147,10 @@ public class SearchableResource extends Resource{
 
 
     @Override
-    public ArrayList<Recipe> findResults( ArrayList<Ingredient> ingredients, String search) {
+    public ArrayList<SearchResult> findResults( ArrayList<Ingredient> ingredients, String search) {
 
-        createResultsList();
+        createSearchResultList();
+        createRecipesList();
 
         searchURL = new String(defaultLink);
 
@@ -126,57 +174,25 @@ public class SearchableResource extends Resource{
 
             int resultCount = 0;
 
-            while ( resultCount < resultCards.size() && resultCount < maxResultSize){
+            while ( resultCount < resultCards.size() && searchResults.size() < maxResultSize){
 
-                Element result = resultCards.get(resultCount++);
+                Element result = resultCards.get(resultCount);
 
                 String resultURL = result.select(linkPath).attr("href");
                 String imageURL = result.select("img").attr("src");
 
-                Document recipePage = Jsoup.connect(resultURL).get();
-                ArrayList<Ingredient> recipeIngredients = new ArrayList<Ingredient>();
-                String recipeDescription = "";
 
-                String recipeTitle = recipePage.select(titlePath).text();
+                String recipeTitle = doc.select(titlePath).get(resultCount).text();
 
-
-                for (Element ingredient : recipePage.select(ingredientPath)) {
-                    recipeIngredients.add(new Ingredient(ingredient.text() + " "));
-                }
-
-
-                int stepCount = 0;
-                for (Element step : recipePage.select(descriptionPath)) {
-                    recipeDescription += "Step " + (++stepCount) + ": " + "\n" + step.text() + "\n";
-                }
-
-                String recipeTimeInfo = "",
-                        nutritionFacts = "";
-
-                if(recipePage.select(totalTimePath).first() != null) {
-                    recipeTimeInfo = recipePage.select(totalTimePath).first().text();
-                }
-
-                if(recipePage.select(nutritionFactsPath).first() != null) {
-                    nutritionFacts = recipePage.select(nutritionFactsPath).first().text();
-
-                    nutritionFacts = nutritionFacts.substring(0, nutritionFacts.lastIndexOf('.'));
-                }
-
-                results.add(new Recipe(recipeTitle, platformName, imageURL,
-                            recipeIngredients, recipeDescription,
-                            recipeTimeInfo, nutritionFacts));
-            }
-
-            if(!ingredientSearchAvailable){
-                excludeAllergens();
+                searchResults.add(new SearchResult( platformName, recipeTitle, resultURL, imageURL));
+                resultCount++;
             }
 
             long now2 = System.currentTimeMillis();
 
             System.out.println((now2-now)/1000);
 
-            return results;
+            return searchResults;
         }
         catch(Exception exception){
             exception.printStackTrace();

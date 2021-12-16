@@ -29,13 +29,13 @@ public class OnlySearchableResource extends SearchableResource {
 
     public void excludeAllergens(){
 
-        for(int r = 0; r < results.size(); r++){
+        for(int r = 0; r < recipes.size(); r++){
             boolean isFound = false;
             for(int i = 0; i < user.getAllergies().size() && !isFound; i++){
 
-                if(results.get(r).included(user.getAllergies().get(i))){
+                if(recipes.get(r).included(user.getAllergies().get(i))){
                     isFound = true;
-                    results.remove(r);
+                    recipes.remove(r);
                     r--;
                 }
             }

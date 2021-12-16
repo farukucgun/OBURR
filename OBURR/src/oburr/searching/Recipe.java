@@ -5,7 +5,7 @@
 package oburr.searching;
 
 import java.util.ArrayList;
-
+import oburr.user.User;
 
 public class Recipe {
 
@@ -14,9 +14,10 @@ public class Recipe {
     private int  totalTime;
     private int difficultyLevel;
     private int calories;
+    private int recipeScore;
 
-    public Recipe(String recipeName, String repiceResource, String imageUrl, ArrayList<Ingredient> recipeIngredients,
-                  String recipeSteps, String timeInfo, String nutritionFacts){
+    public Recipe(String recipeName, String recipeResource, String imageUrl, ArrayList<Ingredient> recipeIngredients,
+                  String recipeSteps, String timeInfo, String nutritionFacts, User user){
 
         setRecipeName(recipeName);
         setRecipeResource(recipeResource);
@@ -26,6 +27,8 @@ public class Recipe {
         setTotalTime(readTime(timeInfo));
         setNutritionFacts(nutritionFacts);
         setCalories(readCalories(nutritionFacts));
+
+        setRecipeScore(user);
 
         setDifficultyLevel();
     }
@@ -54,8 +57,8 @@ public class Recipe {
 
     public boolean included(Ingredient ingredient){
         for(int i = 0; i < recipeIngredients.size(); i++){
-            if(recipeIngredients.get(i).toString().indexOf(ingredient.toString() + " ") >= 0
-            || recipeIngredients.get(i).toString().indexOf(ingredient.toString() + ",") >= 0){
+            if(recipeIngredients.get(i).toString().contains(ingredient.toString() + " ")
+            || recipeIngredients.get(i).toString().contains(ingredient.toString() + ",") ){
                 return true;
             }
         }
@@ -82,6 +85,36 @@ public class Recipe {
 
 
         return caloriesIntake;
+    }
+
+    public void setRecipeScore(User user){
+
+        if(user == null){
+            recipeScore = 0;
+        }
+
+        else{
+
+            if(user.getLikedIngredients() != null && user.getLikedIngredients().size() > 0) {
+
+                for (Ingredient ingredient : user.getLikedIngredients()) {
+                    if (included(ingredient)) {
+                        recipeScore += 5;
+                    }
+                }
+
+            }
+
+            if(user.getDisLikedIngredients() != null && user.getDisLikedIngredients().size() > 0) {
+                for (Ingredient ingredient : user.getDisLikedIngredients()) {
+                    if (included(ingredient)) {
+                        recipeScore -= 3;
+                    }
+                }
+            }
+
+        }
+
     }
 
     public int readTime(String timeInfo){
@@ -124,6 +157,7 @@ public class Recipe {
     public int getTotalTime(){ return totalTime;}
     public int getCalories(){ return calories;}
     public int getDifficultyLevel(){ return difficultyLevel;}
+    public int getRecipeScore(){ return recipeScore; }
 
 
 
