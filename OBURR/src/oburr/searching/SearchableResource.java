@@ -72,7 +72,7 @@ public class SearchableResource extends Resource{
                 recipeTimeInfo = recipePage.select(totalTimePath).first().text();
             }
 
-            if (recipePage.select(nutritionFactsPath).first() != null) {
+            if ( nutritionFactsPath != null && recipePage.select(nutritionFactsPath).first() != null) {
                 nutritionFacts = recipePage.select(nutritionFactsPath).first().text();
 
                 nutritionFacts = nutritionFacts.substring(0, nutritionFacts.lastIndexOf('.'));
@@ -163,11 +163,7 @@ public class SearchableResource extends Resource{
 
         String url = updatedURL(searchURL,search);
 
-        System.out.println(url);
-
         try {
-
-            long now = System.currentTimeMillis();
 
             Document doc = Jsoup.connect(url).get();
             Elements resultCards = doc.select(resultPath);
@@ -178,8 +174,8 @@ public class SearchableResource extends Resource{
 
                 Element result = resultCards.get(resultCount);
 
-                String resultURL = result.select(linkPath).attr("href");
-                String imageURL = result.select("img").attr("src");
+                String resultURL = result.select(linkPath).attr("abs:href");
+                String imageURL = result.select("img").attr("abs:src");
 
 
                 String recipeTitle = doc.select(titlePath).get(resultCount).text();
@@ -187,10 +183,6 @@ public class SearchableResource extends Resource{
                 searchResults.add(new SearchResult( platformName, recipeTitle, resultURL, imageURL));
                 resultCount++;
             }
-
-            long now2 = System.currentTimeMillis();
-
-            System.out.println((now2-now)/1000);
 
             return searchResults;
         }

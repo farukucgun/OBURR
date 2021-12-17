@@ -57,10 +57,25 @@ public class Recipe {
 
     public boolean included(Ingredient ingredient){
         for(int i = 0; i < recipeIngredients.size(); i++){
-            if(recipeIngredients.get(i).toString().contains(ingredient.toString() + " ")
-            || recipeIngredients.get(i).toString().contains(ingredient.toString() + ",") ){
+
+            if(recipeIngredients.get(i).toString().contains(ingredient + " ")
+            || recipeIngredients.get(i).toString().contains(ingredient + ",") ){
                 return true;
             }
+
+            else if( recipeIngredients.get(i).toString().charAt(recipeIngredients.get(i).toString().length() - 1) != 's'
+                    ||
+                    (recipeIngredients.get(i).toString().contains(ingredient + "s ")
+                    || recipeIngredients.get(i).toString().contains(ingredient + "s,")) ){
+                return true;
+
+            }
+            else if(recipeIngredients.get(i).toString().contains(ingredient + "es ")
+                    || recipeIngredients.get(i).toString().contains(ingredient + "es,")){
+
+                return true;
+            }
+
         }
 
         return false;

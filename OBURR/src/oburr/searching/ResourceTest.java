@@ -45,10 +45,21 @@ public class ResourceTest {
                 ".recipeNutritionSectionBlock > .section-body"
         );
 
+        Resource foodNetwork = new RecipeResource(
+                "foodnetwork.com",
+                "https://www.foodnetwork.com/search/",false,
+                user, "", ".m-MediaBlock.o-ResultCard__m-MediaBlock > .m-MediaBlock__m-MediaWrap ",
+                ".m-MediaBlock.o-ResultCard__m-MediaBlock > .m-MediaBlock__m-TextWrap > .m-MediaBlock__a-Headline > [href] > .m-MediaBlock__a-HeadlineText",
+                 "a", "li.o-Method__m-Step", ".o-Ingredients__a-Ingredient--CheckboxLabel",
+                ".recipeInfo > .o-RecipeInfo > .o-RecipeInfo__m-Level > li > .m-RecipeInfo__a-Description--Total.o-RecipeInfo__a-Description",
+                ""
+        );
+
+
 
         long now = System.currentTimeMillis();
 
-        ArrayList<SearchResult> allRecipesResults = allRecipes.findResults(null,"potato");
+        ArrayList<SearchResult> allRecipesResults = allRecipes.findResults(likes,"");
 
         long now2 = System.currentTimeMillis();
         System.out.println("It took " + (now2-now)/1000 + " seconds for allRecipes results");
@@ -60,8 +71,16 @@ public class ResourceTest {
         now2 = System.currentTimeMillis();
         System.out.println("It took " + (now2-now)/1000 + " seconds myRecipes results");
 
+        now = System.currentTimeMillis();
+
+        ArrayList<SearchResult> foodNetworkResults = foodNetwork.findResults(null,"potato");
+
+        now2 = System.currentTimeMillis();
+        System.out.println("It took " + (now2-now)/1000 + " seconds foodNetwork results");
+
         ArrayList<Recipe> recipes1 = new ArrayList<Recipe>();
         ArrayList<Recipe> recipes2 = new ArrayList<Recipe>();
+        ArrayList<Recipe> recipes3 = new ArrayList<Recipe>();
 
         System.out.println(allRecipesResults.size());
         System.out.println(myRecipesResults.size());
@@ -71,7 +90,6 @@ public class ResourceTest {
         for(int i = 0; i < allRecipesResults.size(); i++){
             System.out.println(allRecipesResults.get(i).getRecipeTitle());
             recipes1.add(allRecipes.getRecipe(allRecipesResults.get(i)));
-            System.out.println(recipes1.get(i).getRecipeScore());
         }
 
         now2 = System.currentTimeMillis();
@@ -81,7 +99,6 @@ public class ResourceTest {
         now = System.currentTimeMillis();
 
         for(int i = 0; i < myRecipesResults.size(); i++){
-            System.out.println(myRecipesResults.get(i).getRecipeTitle());
             recipes2.add(myRecipes.getRecipe(myRecipesResults.get(i)));
 
         }
@@ -89,6 +106,18 @@ public class ResourceTest {
 
         now2 = System.currentTimeMillis();
         System.out.println("It took " + (now2-now)/1000 + " seconds to initialize MyRecipesResults");
+
+        now = System.currentTimeMillis();
+
+        for(int i = 0; i < foodNetworkResults.size(); i++){
+            recipes3.add(myRecipes.getRecipe(foodNetworkResults.get(i)));
+
+        }
+
+
+        now2 = System.currentTimeMillis();
+        System.out.println("It took " + (now2-now)/1000 + " seconds to initialize foodNetworkResults");
+
     }
 
 
