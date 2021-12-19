@@ -2,11 +2,11 @@ package oburr.searching;
 
 import java.util.Comparator;
 
-public class SortByDifficultyLevel implements Comparator<Recipe>{
+public class SortByDifficultyLevel implements Comparator<SearchResult>{
 
-    public int compare(Recipe firstRecipe, Recipe secondRecipe){
+    public int compare(SearchResult firstResult, SearchResult secondResult){
 
-        return firstRecipe.getDifficultyLevel() - secondRecipe.getDifficultyLevel();
+        return firstResult.getRecipe().getDifficultyLevel() - secondResult.getRecipe().getDifficultyLevel();
     }
 
 }

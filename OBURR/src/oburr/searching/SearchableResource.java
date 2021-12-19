@@ -44,6 +44,15 @@ public class SearchableResource extends Resource{
         setNutritionFactsPath(nutritionFactsPath);
     }
 
+    public void initializeRecipes(){
+        for(SearchResult result: searchResults){
+            if(result.getRecipe() == null){
+                result.setRecipe(getRecipe(result));
+            }
+        }
+
+    }
+
     public Recipe getRecipe(SearchResult searchResult) {
         try {
 
@@ -56,7 +65,9 @@ public class SearchableResource extends Resource{
             String imageUrl = searchResult.getImageUrl();
 
             for (Element ingredient : recipePage.select(ingredientPath)) {
-                recipeIngredients.add(new Ingredient(ingredient.text() + " "));
+                if( !ingredient.text().equals("Deselect All")){
+                    recipeIngredients.add(new Ingredient(ingredient.text() + " "));
+                }
             }
 
             int stepCount = 0;
@@ -72,7 +83,8 @@ public class SearchableResource extends Resource{
                 recipeTimeInfo = recipePage.select(totalTimePath).first().text();
             }
 
-            if ( nutritionFactsPath != null && recipePage.select(nutritionFactsPath).first() != null) {
+            if ( (nutritionFactsPath != null && !nutritionFacts.equals(""))
+                    && recipePage.select(nutritionFactsPath).first() != null) {
                 nutritionFacts = recipePage.select(nutritionFactsPath).first().text();
 
                 nutritionFacts = nutritionFacts.substring(0, nutritionFacts.lastIndexOf('.'));

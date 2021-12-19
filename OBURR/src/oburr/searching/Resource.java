@@ -30,6 +30,7 @@ public abstract class Resource {
     public abstract String updatedURL(String baseURL, String search);
     public abstract ArrayList<SearchResult> findResults(ArrayList<Ingredient> ingredients, String search);
     public abstract Recipe getRecipe(SearchResult searchResult);
+    public abstract void initializeRecipes();
     public abstract void excludeAllergens();
 
     public void setIngredientSearchAvailable(boolean ingredientSearchAvailable){ this.ingredientSearchAvailable = ingredientSearchAvailable;}

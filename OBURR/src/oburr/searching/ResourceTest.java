@@ -73,7 +73,7 @@ public class ResourceTest {
 
         now = System.currentTimeMillis();
 
-        ArrayList<SearchResult> foodNetworkResults = foodNetwork.findResults(null,"potato");
+        ArrayList<SearchResult> foodNetworkResults = foodNetwork.findResults(null,"krokan");
 
         now2 = System.currentTimeMillis();
         System.out.println("It took " + (now2-now)/1000 + " seconds foodNetwork results");
@@ -82,13 +82,10 @@ public class ResourceTest {
         ArrayList<Recipe> recipes2 = new ArrayList<Recipe>();
         ArrayList<Recipe> recipes3 = new ArrayList<Recipe>();
 
-        System.out.println(allRecipesResults.size());
-        System.out.println(myRecipesResults.size());
-
         now = System.currentTimeMillis();
 
         for(int i = 0; i < allRecipesResults.size(); i++){
-            System.out.println(allRecipesResults.get(i).getRecipeTitle());
+
             recipes1.add(allRecipes.getRecipe(allRecipesResults.get(i)));
         }
 
@@ -98,10 +95,10 @@ public class ResourceTest {
 
         now = System.currentTimeMillis();
 
-        for(int i = 0; i < myRecipesResults.size(); i++){
+        /*for(int i = 0; i < myRecipesResults.size(); i++){
             recipes2.add(myRecipes.getRecipe(myRecipesResults.get(i)));
 
-        }
+        }*/
 
 
         now2 = System.currentTimeMillis();
@@ -109,9 +106,17 @@ public class ResourceTest {
 
         now = System.currentTimeMillis();
 
-        for(int i = 0; i < foodNetworkResults.size(); i++){
-            recipes3.add(myRecipes.getRecipe(foodNetworkResults.get(i)));
 
+        if(foodNetworkResults != null) {
+            for (int i = 0; i < foodNetworkResults.size() && foodNetworkResults.size() > 0; i++) {
+                recipes3.add(foodNetwork.getRecipe(foodNetworkResults.get(i)));
+                System.out.println("Recipe Name: " + recipes3.get(i).getRecipeName());
+                System.out.println("Recipe URL: " + recipes3.get(i).getImageUrl());
+                System.out.println("Steps: " + recipes3.get(i).getRecipeSteps());
+                System.out.println("Ingredients: " + recipes3.get(i).getRecipeIngredients());
+                System.out.println("Recipe Score: " + recipes3.get(i).getRecipeScore());
+
+            }
         }
 
 

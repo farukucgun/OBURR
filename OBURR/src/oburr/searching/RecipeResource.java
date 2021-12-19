@@ -91,6 +91,10 @@ public class RecipeResource extends OnlySearchableResource{
             Document doc = Jsoup.connect(url).get();
             Elements resultCards = doc.select(resultPath);
 
+            if(resultCards.size() == 0){
+                return null;
+            }
+
             do{
 
                 Element result = resultCards.get(resultCount);

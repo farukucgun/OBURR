@@ -2,11 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0945f1bc-a2d8-4af5-9411-5b6144a15d6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/oburr/searching/RecipeResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/oburr/searching/AbstractRecipe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/oburr/searching/OburrRecipe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/oburr/searching/OburrResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/oburr/searching/OburrResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/Recipe.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/Recipe.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/RecipeResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/RecipeResource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/Resource.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/Resource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/ResourceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/ResourceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SearchResult.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SearchResult.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SearchableResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SearchableResource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SortByCalories.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SortByCalories.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SortByDifficultyLevel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SortByDifficultyLevel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SortByName.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SortByName.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SortByRecipeScore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SortByRecipeScore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SortByTime.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OBURR/oburr/searching/SortByTime.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/oburr/searching/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/Recipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oburr/searching/RecipeResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/RecipeResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oburr/searching/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/Resource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/oburr/searching/ResourceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/ResourceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oburr/searching/SearchResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/SearchResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/oburr/searching/SearchableResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/SearchableResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oburr/searching/SortByCalories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/SortByCalories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oburr/searching/SortByDifficultyLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/SortByDifficultyLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oburr/searching/SortByName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/SortByName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oburr/searching/SortByRecipeScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/SortByRecipeScore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oburr/searching/SortByTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oburr/searching/SortByTime.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +116,12 @@
       <workItem from="1639673232900" duration="598000" />
       <workItem from="1639678965286" duration="70000" />
       <workItem from="1639753825443" duration="6008000" />
+      <workItem from="1639760878200" duration="1000000" />
+      <workItem from="1639771708910" duration="28000" />
+      <workItem from="1639823637754" duration="4412000" />
+      <workItem from="1639832230321" duration="2239000" />
+      <workItem from="1639844829458" duration="1099000" />
+      <workItem from="1639855888383" duration="2427000" />
     </task>
     <servers />
   </component>

@@ -2,10 +2,10 @@ package oburr.searching;
 
 import java.util.Comparator;
 
-public class SortByCalories implements Comparator<Recipe> {
+public class SortByCalories implements Comparator<SearchResult> {
 
-    public int compare(Recipe firstRecipe, Recipe secondRecipe){
-        return firstRecipe.getCalories() - secondRecipe.getCalories();
+    public int compare(SearchResult firstResult, SearchResult secondResult){
+        return firstResult.getRecipe().getCalories() - secondResult.getRecipe().getCalories();
     }
 
 }

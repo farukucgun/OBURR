@@ -2,10 +2,10 @@ package oburr.searching;
 
 import java.util.Comparator;
 
-public class SortByName implements Comparator<Recipe>{
+public class SortByName implements Comparator<SearchResult>{
 
-    public int compare(Recipe firstRecipe, Recipe secondRecipe){
-        return firstRecipe.getRecipeName().compareTo(secondRecipe.getRecipeName());
+    public int compare(SearchResult firstResult, SearchResult secondResult){
+        return firstResult.getRecipeTitle().compareTo(secondResult.getRecipeTitle());
     }
 
 }
