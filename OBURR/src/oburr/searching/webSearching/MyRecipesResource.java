@@ -1,16 +1,18 @@
-package oburr.searching;
+package oburr.searching.webSearching;
 
+import oburr.searching.Ingredient;
+import oburr.searching.webSearching.AllRecipesResource;
 import oburr.user.User;
 
 import java.util.ArrayList;
 
-public class OnlySearchableResource extends SearchableResource {
+public class MyRecipesResource extends AllRecipesResource {
 
-    public OnlySearchableResource(String platformName, String defaultLink, boolean ingredientSearchAvailable,
-                              User user,
-                              String searchKeyWord, String resultPath, String titlePath, String linkPath,
-                              String descriptionPath, String ingredientPath,
-                              String totalTimePath, String nutritionFactsPath){
+    public MyRecipesResource(String platformName, String defaultLink, boolean ingredientSearchAvailable,
+                             User user,
+                             String searchKeyWord, String resultPath, String titlePath, String linkPath,
+                             String descriptionPath, String ingredientPath,
+                             String totalTimePath, String nutritionFactsPath){
 
         super(platformName, defaultLink, ingredientSearchAvailable,
                 user,

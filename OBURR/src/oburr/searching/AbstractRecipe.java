@@ -1,3 +1,8 @@
+/**
+ *@CenkOlcay
+ *java version 16.0.1
+ */
+
 package oburr.searching;
 
 import oburr.user.User;
@@ -6,9 +11,16 @@ import java.util.ArrayList;
 
 public abstract class AbstractRecipe {
 
+    /**
+     * defines the properties of an Recipe object
+     */
+
+
     protected String recipeName, recipeSteps, timeInfo, nutritionFacts;
     protected ArrayList<Ingredient> recipeIngredients;
     protected int  totalTime, difficultyLevel, calories, recipeScore;
+
+    private boolean isSuitable;
 
     public AbstractRecipe(String recipeName, ArrayList<Ingredient> recipeIngredients,
                   String recipeSteps, String timeInfo, int totalTime, int calories, String nutritionFacts, User user){
@@ -23,30 +35,72 @@ public abstract class AbstractRecipe {
 
         recipeScore = 0;
         setRecipeScore(user);
+        setIsSuitable(user);
 
         setDifficultyLevel();
     }
 
 
+    /**
+     * mutator method for recipeName
+     * @param recipeName
+     */
     public void setRecipeName(String recipeName){
         this.recipeName = recipeName;
     }
+
+    /**
+     * mutator method for recipeIngredients
+     * @param recipeIngredients
+     */
     public void setRecipeIngredients(ArrayList<Ingredient> recipeIngredients){ this.recipeIngredients = recipeIngredients;}
+
+    /**
+     * mutator for recipeSteps
+     * @param recipeSteps
+     */
     public void setRecipeSteps(String recipeSteps){
         this.recipeSteps = recipeSteps;
     }
+
+    /**
+     * mutator for nutritionFacts
+     * @param nutritionFacts
+     */
     public void setNutritionFacts(String nutritionFacts){
         this.nutritionFacts = nutritionFacts;
     }
+
+    /**
+     * mutator for timeInfo
+     * @param timeInfo
+     */
     public void setTimeInfo(String timeInfo){ this.timeInfo = timeInfo; }
+
+    /**
+     * mutator for TotalTime
+     * @param totalTime
+     */
     public void setTotalTime(int totalTime){
         this.totalTime = totalTime;
     }
+
+    /**
+     * mutator for calories
+     * @param calories
+     */
     public void setCalories(int calories){
         this.calories = calories;
     }
 
+    /**
+     * checks whether the given ingredient is included in the recipe
+     * @param ingredient
+     * @return
+     */
     public boolean included(Ingredient ingredient){
+
+        //iterates and checks the presence of same word with different forms
         for(int i = 0; i < recipeIngredients.size(); i++){
 
             if(recipeIngredients.get(i).toString().contains(ingredient + " ")
@@ -64,6 +118,13 @@ public abstract class AbstractRecipe {
                 }
             }
 
+            if(ingredient.toString().charAt(length - 1) == 'y'){
+                if (recipeIngredients.get(i).toString().contains(ingredient.toString().substring(0,length-1) + "ies ")
+                        || recipeIngredients.get(i).toString().contains(ingredient.toString().substring(0,length-1) + "ies,")) {
+
+                    return true;
+                }
+            }
             if(ingredient.toString().charAt(length - 1) == 's'){
                 if (recipeIngredients.get(i).toString().contains(ingredient.toString().substring(0,length-1) + " ")
                         || recipeIngredients.get(i).toString().contains(ingredient.toString().substring(0,length-1) + ",")) {
@@ -91,6 +152,10 @@ public abstract class AbstractRecipe {
         return false;
     }
 
+    /**
+     * calculates and sets the recipeScore based on user's preferences
+     * @param user
+     */
     public void setRecipeScore(User user){
 
         if(user == null){
@@ -121,20 +186,81 @@ public abstract class AbstractRecipe {
 
     }
 
+    /**
+     * determines whether the recipe is suitable for user or not
+     * @param user
+     */
+    public void setIsSuitable(User user){
+
+    }
+
+    /**
+     * sets the difficulty based on several parameters
+     */
     public void setDifficultyLevel(){
         difficultyLevel = (recipeIngredients.size() ) + (totalTime/30) + (recipeSteps.length()/10);
     }
 
+
+    /**
+     * accessor for recipeName
+     * @return
+     */
     public String getRecipeName(){ return recipeName;}
+
+    /**
+     * accessor for recipeSteps
+     * @return
+     */
     public String getRecipeSteps(){ return recipeSteps;}
+
+    /**
+     * accessor for recipeIngredients
+     * @return
+     */
     public ArrayList<Ingredient> getRecipeIngredients(){ return recipeIngredients;}
+
+    /**
+     * accessor for nutritionFacts
+     * @return
+     */
     public String getNutritionFacts(){ return nutritionFacts;}
+
+    /**
+     * accessor for timeInfo
+     * @return
+     */
     public String getTimeInfo(){ return timeInfo; }
+
+    /**
+     * accessor for totalTime
+     * @return
+     */
     public int getTotalTime(){ return totalTime;}
+
+    /**
+     * accessor for calories
+     * @return
+     */
     public int getCalories(){ return calories;}
+
+    /**
+     * accessor for difficultyLevel
+     * @return
+     */
     public int getDifficultyLevel(){ return difficultyLevel;}
+
+    /**
+     * accessor for recipeScore
+     * @return
+     */
     public int getRecipeScore(){ return recipeScore; }
 
+    /**
+     * accessor for isSuitable
+     * @return
+     */
+    public boolean isSuitable(){ return isSuitable; }
 
 
 }

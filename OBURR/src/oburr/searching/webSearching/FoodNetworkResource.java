@@ -1,5 +1,6 @@
-package oburr.searching;
+package oburr.searching.webSearching;
 
+import oburr.searching.Ingredient;
 import oburr.user.User;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -9,13 +10,16 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class RecipeResource extends OnlySearchableResource{
+public class FoodNetworkResource extends MyRecipesResource {
+    /**
+    *defines the properties of a resource to be searched
+    */
 
-    public RecipeResource(String platformName, String defaultLink, boolean ingredientSearchAvailable,
-                          User user,
-                          String searchKeyWord, String resultPath, String titlePath, String linkPath,
-                          String descriptionPath, String ingredientPath,
-                          String totalTimePath, String nutritionFactsPath){
+    public FoodNetworkResource(String platformName, String defaultLink, boolean ingredientSearchAvailable,
+                               User user,
+                               String searchKeyWord, String resultPath, String titlePath, String linkPath,
+                               String descriptionPath, String ingredientPath,
+                               String totalTimePath, String nutritionFactsPath){
 
         super(platformName, defaultLink, ingredientSearchAvailable,
                 user,
@@ -34,6 +38,12 @@ public class RecipeResource extends OnlySearchableResource{
 
     }
 
+    /**
+     * updates searchURL according to the search
+     * @param baseURL
+     * @param search
+     * @return
+     */
     public String updatedURL(String baseURL, String search){
 
         if(search == null || search.equals("")){
@@ -54,6 +64,11 @@ public class RecipeResource extends OnlySearchableResource{
         return updatedURL;
     }
 
+    /**
+     *changes the url for another page if necessary
+     * @param url
+     * @return
+     */
     public String changePage(String url){
 
         if(url.charAt(url.length() - 1 ) == '-'){
@@ -68,6 +83,12 @@ public class RecipeResource extends OnlySearchableResource{
         return url;
     }
 
+    /**
+     * finds and returns the results
+     * @param ingredients
+     * @param search
+     * @return
+     */
     public ArrayList<SearchResult> findResults(ArrayList<Ingredient> ingredients, String search) {
 
         createSearchResultList();
@@ -88,7 +109,10 @@ public class RecipeResource extends OnlySearchableResource{
 
             int resultCount = 0;
 
+            //parse the search page
             Document doc = Jsoup.connect(url).get();
+
+            //find the results
             Elements resultCards = doc.select(resultPath);
 
             if(resultCards.size() == 0){
@@ -96,6 +120,9 @@ public class RecipeResource extends OnlySearchableResource{
             }
 
             do{
+
+                //create the searchResult
+
 
                 Element result = resultCards.get(resultCount);
 
@@ -114,7 +141,7 @@ public class RecipeResource extends OnlySearchableResource{
                     resultCards = doc.select(resultPath);
                 }
 
-            }
+            }//dont leave the loop until the given conditions are not satisfied
             while ( resultCount < resultCards.size() && searchResults.size() < maxResultSize);
 
             return searchResults;
@@ -125,7 +152,6 @@ public class RecipeResource extends OnlySearchableResource{
         }
         return null;
     }
-
 
 
 }

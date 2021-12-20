@@ -1,14 +1,26 @@
 package oburr.searching;
 
+import oburr.searching.webSearching.AllRecipesResource;
+import oburr.searching.webSearching.FoodNetworkResource;
+import oburr.searching.webSearching.MyRecipesResource;
+import oburr.searching.webSearching.Resource;
 import oburr.user.User;
+
 import  java.util.ArrayList;
-import java.util.Collections;
+
+import java.util.Scanner;
+
+import javax.swing.JFileChooser;
+
+import javax.imageio.ImageIO;
+import java.io.IOException;
+import java.awt.image.BufferedImage;
 
 public class ResourceTest {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-        User user = new User("faruk","enes");
+        User user = new User("faruk", "enes");
 
         ArrayList<Ingredient> allergies = new ArrayList<Ingredient>();
         allergies.add(new Ingredient("garlic"));
@@ -25,106 +37,87 @@ public class ResourceTest {
         user.setLikedIngredients(likes);
         user.setDislikedIngredients(dislikes);
 
-        Resource allRecipes = new SearchableResource(
+        Resource allRecipes = new AllRecipesResource(
                 "AllRecipes.com",
                 "https://www.allrecipes.com/search/results/?", true,
                 user, "search=",
-                ".card__recipe.card__facetedSearchResult" ,".card__title" ,".manual-link-behavior",
+                ".card__recipe.card__facetedSearchResult", ".card__title", ".manual-link-behavior",
                 ".paragraph > p", ".ingredients-item-name",
                 "body > div.docked-sharebar-content-container > div > main > div.recipe-container.two-col-container > div.content.two-col-main-content.karma-content-container > div.recipe-content.two-col-content.karma-main-column > div.two-col-content-wrapper > div.recipe-content-container > div.lead-content-wrapper.two-col-style > div.lead-content-aside-wrapper > div > section > div:nth-child(1) > div:nth-child(3) > div.recipe-meta-item-body",
                 ".recipe-nutrition-section.partial > .section-body"
-                );
+        );
 
-        Resource myRecipes = new OnlySearchableResource(
-          "MyRecipes.com",
+        Resource myRecipes = new MyRecipesResource(
+                "MyRecipes.com",
                 "https://www.myrecipes.com/search?q=", false,
                 user, "",
-                "div.search-result",".linkHoverStyle.search-result-title-link-text",".search-result-title-link",
+                "div.search-result", ".linkHoverStyle.search-result-title-link-text", ".search-result-title-link",
                 ".paragraph > p", ".elementFont__body.ingredients-item-name",
                 "body > div.docked-sharebar-content-container > div > main > div.recipe-container.two-col-container > div.content.two-col-main-content.karma-content-container > div.recipe-content.two-col-content.karma-main-column > div.two-col-content-wrapper > div.recipe-content-container > div.lead-content-wrapper.two-col-style > div.lead-content-aside-wrapper > div > section > div:nth-child(1) > div:nth-child(3) > div.recipe-meta-item-body.elementFont__subtitle",
                 ".recipeNutritionSectionBlock > .section-body"
         );
 
-        Resource foodNetwork = new RecipeResource(
+        Resource foodNetwork = new FoodNetworkResource(
                 "foodnetwork.com",
-                "https://www.foodnetwork.com/search/",false,
+                "https://www.foodnetwork.com/search/", false,
                 user, "", ".m-MediaBlock.o-ResultCard__m-MediaBlock > .m-MediaBlock__m-MediaWrap ",
                 ".m-MediaBlock.o-ResultCard__m-MediaBlock > .m-MediaBlock__m-TextWrap > .m-MediaBlock__a-Headline > [href] > .m-MediaBlock__a-HeadlineText",
-                 "a", "li.o-Method__m-Step", ".o-Ingredients__a-Ingredient--CheckboxLabel",
+                "a", "li.o-Method__m-Step", ".o-Ingredients__a-Ingredient--CheckboxLabel",
                 ".recipeInfo > .o-RecipeInfo > .o-RecipeInfo__m-Level > li > .m-RecipeInfo__a-Description--Total.o-RecipeInfo__a-Description",
                 ""
         );
 
+        ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
 
+        String str = "potato,onion";
+        Scanner reader = new Scanner(str);
 
-        long now = System.currentTimeMillis();
+        reader.useDelimiter("[^A-Za-z]");
 
-        ArrayList<SearchResult> allRecipesResults = allRecipes.findResults(likes,"");
-
-        long now2 = System.currentTimeMillis();
-        System.out.println("It took " + (now2-now)/1000 + " seconds for allRecipes results");
-
-        now = System.currentTimeMillis();
-
-        ArrayList<SearchResult> myRecipesResults = myRecipes.findResults(null,"potato");
-
-        now2 = System.currentTimeMillis();
-        System.out.println("It took " + (now2-now)/1000 + " seconds myRecipes results");
-
-        now = System.currentTimeMillis();
-
-        ArrayList<SearchResult> foodNetworkResults = foodNetwork.findResults(null,"krokan");
-
-        now2 = System.currentTimeMillis();
-        System.out.println("It took " + (now2-now)/1000 + " seconds foodNetwork results");
-
-        ArrayList<Recipe> recipes1 = new ArrayList<Recipe>();
-        ArrayList<Recipe> recipes2 = new ArrayList<Recipe>();
-        ArrayList<Recipe> recipes3 = new ArrayList<Recipe>();
-
-        now = System.currentTimeMillis();
-
-        for(int i = 0; i < allRecipesResults.size(); i++){
-
-            recipes1.add(allRecipes.getRecipe(allRecipesResults.get(i)));
+        while(reader.hasNext()){
+            ingredients.add(new Ingredient(reader.next()));
         }
 
-        now2 = System.currentTimeMillis();
-        System.out.println("It took " + (now2-now)/1000 + " seconds to initialize AllRecipesResults");
+        allRecipes.findResults(ingredients,"");
+
+        OburrRecipe obR = null;
+        String ext = "";
+
+        JFileChooser jfc = new JFileChooser();
+
+        if (jfc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 
 
-        now = System.currentTimeMillis();
+            try {
+                ext = jfc.getSelectedFile().getAbsolutePath();
 
-        /*for(int i = 0; i < myRecipesResults.size(); i++){
-            recipes2.add(myRecipes.getRecipe(myRecipesResults.get(i)));
+                ext = ext.substring(ext.lastIndexOf('.') + 1);
 
-        }*/
+                BufferedImage bI = ImageIO.read(jfc.getSelectedFile());
 
+                obR = new OburrRecipe("Faruk'un Recipe", "Enes", 35,
+                        allergies, "Eskişehir Osmangazi", " Zaman alır", 34,
+                        "Kalorisiz ", 245
+                        , user, bI);
 
-        now2 = System.currentTimeMillis();
-        System.out.println("It took " + (now2-now)/1000 + " seconds to initialize MyRecipesResults");
-
-        now = System.currentTimeMillis();
-
-
-        if(foodNetworkResults != null) {
-            for (int i = 0; i < foodNetworkResults.size() && foodNetworkResults.size() > 0; i++) {
-                recipes3.add(foodNetwork.getRecipe(foodNetworkResults.get(i)));
-                System.out.println("Recipe Name: " + recipes3.get(i).getRecipeName());
-                System.out.println("Recipe URL: " + recipes3.get(i).getImageUrl());
-                System.out.println("Steps: " + recipes3.get(i).getRecipeSteps());
-                System.out.println("Ingredients: " + recipes3.get(i).getRecipeIngredients());
-                System.out.println("Recipe Score: " + recipes3.get(i).getRecipeScore());
-
+            }
+            catch (IOException ioException) {
+                ioException.printStackTrace();
             }
         }
 
 
-        now2 = System.currentTimeMillis();
-        System.out.println("It took " + (now2-now)/1000 + " seconds to initialize foodNetworkResults");
+        OburrResource oR = new OburrResource();
+        oR.uploadOburrRecipe(obR,ext);
+
+        ArrayList<OburrRecipe> o = oR.bringRecipes(0);
+
+        for(OburrRecipe oburrRecipe: o){
+            System.out.println(oburrRecipe.getRecipeName());
+        }
+
+        }
 
     }
 
 
-
-}

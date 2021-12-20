@@ -1,4 +1,6 @@
-package oburr.searching;
+package oburr.searching.sorting;
+
+import oburr.searching.webSearching.SearchResult;
 
 import java.util.Comparator;
 
