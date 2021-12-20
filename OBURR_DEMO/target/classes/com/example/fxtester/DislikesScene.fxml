@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="825.0" style="-fx-background-color: #F7EA84;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fxtester.DislikesSceneController">
+   <children>
+      <Label fx:id="loginErrorLabel" layoutX="169.0" layoutY="327.0" />
+      <ImageView fitHeight="44.0" fitWidth="53.0" layoutX="47.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../SpecifyLikes.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="115.0" layoutY="40.0" text="SPECIFY YOUR DISLIKES">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="169.0" layoutY="109.0" prefHeight="294.0" prefWidth="293.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="546.0" prefWidth="269.0">
+               <children>
+                  <CheckBox fx:id="checkBox1" layoutX="7.0" layoutY="5.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Anchovy" />
+                  <CheckBox fx:id="checkBox2" layoutX="7.0" layoutY="30.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Bean" />
+                  <CheckBox fx:id="checkBox3" layoutX="7.0" layoutY="55.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Beet" />
+                  <CheckBox fx:id="checkBox4" layoutX="7.0" layoutY="80.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Black licorice" />
+                  <CheckBox fx:id="checkBox5" layoutX="7.0" layoutY="105.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Bologna" />
+                  <CheckBox fx:id="checkBox6" layoutX="7.0" layoutY="130.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Brie" />
+                  <CheckBox fx:id="checkBox7" layoutX="7.0" layoutY="155.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Broccoli" />
+                  <CheckBox fx:id="checkBox8" layoutX="7.0" layoutY="180.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Cabbage" />
+                  <CheckBox fx:id="checkBox9" layoutX="7.0" layoutY="205.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Carrot" />
+                  <CheckBox fx:id="checkBox10" layoutX="7.0" layoutY="230.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Cauliflower" />
+                  <CheckBox fx:id="checkBox11" layoutX="7.0" layoutY="255.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Celery" />
+                  <CheckBox fx:id="checkBox12" layoutX="7.0" layoutY="280.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Cheese" />
+                  <CheckBox fx:id="checkBox13" layoutX="7.0" layoutY="305.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Cilantro" />
+                  <CheckBox fx:id="checkBox14" layoutX="7.0" layoutY="330.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Eggplant" />
+                  <CheckBox fx:id="checkBox15" layoutX="7.0" layoutY="355.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Garlic" />
+                  <CheckBox fx:id="checkBox16" layoutX="7.0" layoutY="380.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Ginger" />
+                  <CheckBox fx:id="checkBox17" layoutX="7.0" layoutY="405.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Ketchup" />
+                  <CheckBox fx:id="checkBox18" layoutX="7.0" layoutY="430.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Leek" />
+                  <CheckBox fx:id="checkBox19" layoutX="7.0" layoutY="455.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Lettuce" />
+                  <CheckBox fx:id="checkBox20" layoutX="7.0" layoutY="480.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Liver" />
+                  <CheckBox fx:id="checkBox21" layoutX="7.0" layoutY="505.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Mayonnaise" />
+                  <CheckBox fx:id="checkBox22" layoutX="150.0" layoutY="5.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Mushroom" />
+                  <CheckBox fx:id="checkBox23" layoutX="150.0" layoutY="30.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Mustard" />
+                  <CheckBox fx:id="checkBox24" layoutX="150.0" layoutY="55.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Okra" />
+                  <CheckBox fx:id="checkBox25" layoutX="150.0" layoutY="80.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Olive" />
+                  <CheckBox fx:id="checkBox26" layoutX="150.0" layoutY="105.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Onion" />
+                  <CheckBox fx:id="checkBox27" layoutX="150.0" layoutY="130.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Oyster" />
+                  <CheckBox fx:id="checkBox28" layoutX="150.0" layoutY="155.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Paprika" />
+                  <CheckBox fx:id="checkBox29" layoutX="150.0" layoutY="180.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Parsley" />
+                  <CheckBox fx:id="checkBox30" layoutX="150.0" layoutY="205.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Pepper" />
+                  <CheckBox fx:id="checkBox31" layoutX="150.0" layoutY="230.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Pickle" />
+                  <CheckBox fx:id="checkBox32" layoutX="150.0" layoutY="255.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Raisin" />
+                  <CheckBox fx:id="checkBox33" layoutX="150.0" layoutY="280.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Salt" />
+                  <CheckBox fx:id="checkBox34" layoutX="150.0" layoutY="305.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Sugar" />
+                  <CheckBox fx:id="checkBox35" layoutX="150.0" layoutY="330.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Tomatoes" />
+                  <CheckBox fx:id="checkBox36" layoutX="150.0" layoutY="355.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Tuna" />
+                  <CheckBox fx:id="userCheckBox1" layoutX="150.0" layoutY="380.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Add Ingredient" />
+                  <CheckBox fx:id="userCheckBox2" layoutX="150.0" layoutY="405.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Add Ingredient" />
+                  <CheckBox fx:id="userCheckBox3" layoutX="150.0" layoutY="430.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Add Ingredient" />
+                  <CheckBox fx:id="userCheckBox4" layoutX="150.0" layoutY="455.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Add Ingredient" />
+                  <CheckBox fx:id="userCheckBox5" layoutX="150.0" layoutY="480.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Add Ingredient" />
+                  <CheckBox fx:id="userCheckBox6" layoutX="150.0" layoutY="505.0" mnemonicParsing="false" onAction="#dislikesCheckBoxListener" text="Add Ingredient" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Button layoutX="338.0" layoutY="440.0" mnemonicParsing="false" onAction="#addIngredient" prefHeight="26.0" prefWidth="50.0" text="ADD" />
+      <Button fx:id="saveButton" layoutX="692.0" layoutY="453.0" mnemonicParsing="false" onAction="#updateDislikes" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #237A15;" text="SAVE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Button>
+      <Button fx:id="backButton" layoutX="699.0" layoutY="27.0" mnemonicParsing="false" onAction="#back" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #237A7E;" text="BACK">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="enterIngredient" layoutX="169.0" layoutY="439.0" prefHeight="26.0" prefWidth="146.0" promptText="Enter ingredient" />
+      <Button fx:id="skipButton" layoutX="703.0" layoutY="27.0" mnemonicParsing="false" onAction="#changeSceneFromRegister" prefHeight="37.0" prefWidth="66.0" style="-fx-background-color: #237A7E;" text="SKIP" visible="false">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="proceedButton" layoutX="689.0" layoutY="451.0" mnemonicParsing="false" onAction="#proceed" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #237A15;" text="PROCEED" visible="false">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
