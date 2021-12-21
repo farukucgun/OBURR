@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="searchGUI.Controller">
+   <left>
+      <VBox prefHeight="400.0" prefWidth="114.0" style="-fx-background-color: #303030;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="profileButton" mnemonicParsing="false" onAction="#profileMenu" prefHeight="38.0" prefWidth="114.0" text="Profile" />
+            <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchMenu" prefHeight="38.0" prefWidth="114.0" text="Search" />
+            <Button fx:id="ingridientSearchButton" mnemonicParsing="false" onAction="#ingridientSearchMenu" prefHeight="38.0" prefWidth="114.0" text="Ingridient Search" />
+            <Button fx:id="randomButton" mnemonicParsing="false" onAction="#randomMenu" prefHeight="38.0" prefWidth="114.0" text="Random Search" />
+            <Button fx:id="discoverButton" mnemonicParsing="false" onAction="#discoverMenu" prefHeight="38.0" prefWidth="114.0" text="Discover" />
+            <Button fx:id="upcomingEventButton" mnemonicParsing="false" onAction="#upcomingEventMenu" prefHeight="38.0" prefWidth="114.0" text="Upcoming Event" />
+         </children>
+      </VBox>
+   </left>
+</BorderPane>
