@@ -11,6 +11,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import oburr.searching.Ingredient;
+import oburr.user.UserUpdater;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -127,7 +128,7 @@ public class LikesSceneController {
 
     public void initialize(){
 
-        ArrayList<Ingredient> tmp = oburr.user.Tester.likesFromDatabase();
+        ArrayList<Ingredient> tmp = UserUpdater.likesFromDatabase();
         System.out.println(tmp);
         for( Ingredient i: tmp ){
             if( checkBox1.getText().equals( i.toString() ) ){
@@ -273,18 +274,18 @@ public class LikesSceneController {
         CheckBox checkBox = ( CheckBox ) e.getSource();
         if( !checkBox.getText().equals( "Add Ingredient") ){
             if( checkBox.isSelected() ){
-                oburr.user.Tester.addLikedItem( checkBox.getText() );
+                UserUpdater.addLikedItem( checkBox.getText() );
 
             }
             else {
-                oburr.user.Tester.removeLikedItem( checkBox.getText() );
+                UserUpdater.removeLikedItem( checkBox.getText() );
             }
         }
 
     }
 
     public void updateLikes( ActionEvent e ){
-        oburr.user.Tester.updateLikedInfo();
+        UserUpdater.updateLikedInfo();
     }
 
     public void addIngredient( ActionEvent e ){

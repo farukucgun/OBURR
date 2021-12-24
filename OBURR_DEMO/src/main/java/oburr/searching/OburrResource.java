@@ -34,7 +34,8 @@ public class OburrResource {
     private ArrayList<OburrRecipe> recipes;
     private User user;
 
-    public OburrResource(){
+    public OburrResource(User user){
+
         setUser(user);
     }
 
@@ -48,12 +49,17 @@ public class OburrResource {
      * fetches the oburrRecipes from DB
      * @return
      */
-    public ArrayList<OburrRecipe> bringRecipes(int startIndex) {
+    public ArrayList<OburrRecipe> bringRecipes(int startIndex, int Id) {
 
         DBCaller dbCaller = new DBCaller();
         dbCaller.setConnection();
 
-        String query = "SELECT * FROM  oburr_userRecipes LIMIT " + startIndex + ",5 ";
+        String query = "SELECT * FROM  oburr_userRecipes LIMIT " + startIndex + ",4 ";
+
+        if(Id != 0){
+            query = query.substring(0,query.indexOf("LIMIT")-1) + " WHERE user_id = " + Id + " " + query.substring(query.indexOf("LIMIT"));
+            System.out.println(query);
+        }
 
 
         ArrayList<OburrRecipe> oburrRecipes = new ArrayList<OburrRecipe>();

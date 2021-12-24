@@ -14,7 +14,7 @@ public abstract class Resource {
      * defines the properties of a searching resource
      */
 
-    public static final int maxResultSize = 20;
+    public static final int maxResultSize = 10;
 
     protected User user;
     protected String platformName, defaultLink;

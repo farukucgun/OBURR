@@ -5,59 +5,82 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="825.0" style="-fx-background-color: #F7EA84;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fxtester.MenuSceneController">
-   <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="334.0" layoutX="114.0" layoutY="129.0" stroke="BLACK" strokeType="INSIDE" width="621.0" />
-      <Label layoutX="114.0" layoutY="44.0" text="WELCOME">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="334.0" layoutX="114.0" layoutY="129.0" stroke="BLACK" strokeType="INSIDE" width="621.0" />
+      <Label fx:id="r" layoutX="124.0" layoutY="129.0" prefHeight="44.0" prefWidth="401.0">
          <font>
-            <Font name="Times New Roman" size="48.0" />
+            <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#bringMenu" prefHeight="44.0" prefWidth="37.0" style="-fx-background-color: #F7EA84;">
-         <graphic>
-            <ImageView fitHeight="43.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../MenuButton.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <Rectangle fx:id="menuBar" arcHeight="5.0" arcWidth="5.0" fill="#ffdb5a" height="520.0" layoutX="-201.0" stroke="#ffdb5a" strokeType="INSIDE" width="200.0" />
-      <Button fx:id="menuProfileButton" alignment="BOTTOM_LEFT" layoutY="65.0" mnemonicParsing="false" onAction="#toProfileScene" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #EBFF74;" text="PROFILE" visible="false">
+        <Label layoutX="114.0" layoutY="44.0" text="WELCOME">
+            <font>
+                <Font name="Algerian" size="48.0" />
+            </font>
+        </Label>
+        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#bringMenu" prefHeight="44.0" prefWidth="37.0" style="-fx-background-color: #F7EA84;">
+            <graphic>
+                <ImageView fitHeight="43.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../MenuButton.png" />
+                    </image>
+                </ImageView>
+            </graphic></Button>
+      <HBox fx:id="hbox" layoutX="114.0" layoutY="168.0" onMouseClicked="#openRecipe" prefHeight="294.0" prefWidth="621.0" style="-fx-border-color: #B22222;">
+         <children>
+            <ImageView fx:id="img" fitHeight="290.0" fitWidth="314.0" pickOnBounds="true" preserveRatio="true" />
+            <Pane prefHeight="293.0" prefWidth="298.0">
+               <children>
+                  <Label fx:id="name" layoutX="4.0" layoutY="114.0" prefHeight="78.0" prefWidth="290.0" wrapText="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Label>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+        <Rectangle fx:id="menuBar" arcHeight="5.0" arcWidth="5.0" fill="#ffdb5a" height="520.0" layoutX="-201.0" stroke="#ffdb5a" strokeType="INSIDE" width="200.0" />
+        <Button fx:id="menuProfileButton" alignment="BOTTOM_LEFT" layoutY="65.0" mnemonicParsing="false" onAction="#toProfileScene" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #EBFF74;" text="PROFILE" visible="false">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="menuSearchButton" alignment="BOTTOM_LEFT" layoutY="100.0" mnemonicParsing="false" onAction="#toSearchScene" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #FCFF6A;" text="SEARCH BY NAME" visible="false">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="menuSettingsButton" alignment="TOP_LEFT" layoutY="256.0" mnemonicParsing="false" onAction="#toSettingsScene" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #FFFBA6;" text="SETTINGS" visible="false">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="menuIngredientSearchButton" alignment="TOP_LEFT" layoutX="-2.0" layoutY="139.0" mnemonicParsing="false" onAction="#toIngredientSearchScene" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #FFB4C6;" text="SEARCH BY INREDIENTS" visible="false">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+        <Button fx:id="menuRandomSearchButton" alignment="BOTTOM_LEFT" layoutY="176.0" mnemonicParsing="false" onAction="#toRandomSearchScene" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #EBFF74;" text="RANDOM SEARCH" visible="false">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Button>
+        <ImageView fx:id="menuLogo" fitHeight="51.0" fitWidth="92.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <image>
+                <Image url="@../../../logo_değiştirilmiş.png" />
+            </image>
+        </ImageView>
+      <Button fx:id="menuDiscoverButton" alignment="BOTTOM_LEFT" layoutY="216.0" mnemonicParsing="false" onAction="#toDiscoverScene" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #e9ffc8;" text="DISCOVER" visible="false">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="menuFavoritesButton" alignment="BOTTOM_LEFT" layoutY="100.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #FCFF6A;" text="FAVORITES" visible="false">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="menuSettingsButton" alignment="TOP_LEFT" layoutY="135.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #FFFBA6;" text="SETTINGS" visible="false">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="menuSearchingButton" alignment="TOP_LEFT" layoutX="-1.0" layoutY="170.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #FFB4C6;" text="FIND RECIPES" visible="false">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="menuEatingProgramButton" layoutY="210.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #EBFF74;" text="GENERATE EATING PROGRAM" visible="false">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Button>
-      <ImageView fx:id="menuLogo" fitHeight="51.0" fitWidth="92.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../../../logo_değiştirilmiş.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="menuDropMenuButton" layoutX="198.0" mnemonicParsing="false" onAction="#dropMenu" opacity="0.0" prefHeight="520.0" prefWidth="627.0" text="Button" />
-      <Label layoutX="186.0" layoutY="140.0" text="Label" />
-      <Label layoutX="498.0" layoutY="323.0" text="HEADER" />
-      <ImageView fitHeight="255.0" fitWidth="325.0" layoutX="136.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true" />
-   </children>
+        <Button fx:id="menuDropMenuButton" layoutX="198.0" mnemonicParsing="false" onAction="#dropMenu" opacity="0.0" prefHeight="520.0" prefWidth="627.0" text="Button" visible="false" />
+
+    </children>
 </AnchorPane>

@@ -1,5 +1,4 @@
 package com.example.fxtester;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +10,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import oburr.searching.Ingredient;
+import oburr.user.UserUpdater;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class DislikesSceneController {
@@ -125,7 +124,7 @@ public class DislikesSceneController {
 
 
     public void initialize(){
-        ArrayList<Ingredient> tmp = oburr.user.Tester.dislikesFromDatabase();
+        ArrayList<Ingredient> tmp = UserUpdater.dislikesFromDatabase();
         System.out.println(tmp);
         for( Ingredient i: tmp ){
             if( checkBox1.getText().equals( i.toString() ) ){
@@ -268,18 +267,18 @@ public class DislikesSceneController {
         CheckBox checkBox = ( CheckBox ) e.getSource();
         if( !checkBox.getText().equals( "Add Ingredient") ){
             if( checkBox.isSelected() ){
-                oburr.user.Tester.addDislikedItem( checkBox.getText() );
+                UserUpdater.addDislikedItem( checkBox.getText() );
 
             }
             else {
-                oburr.user.Tester.removeDislikedItem( checkBox.getText() );
+                UserUpdater.removeDislikedItem( checkBox.getText() );
             }
         }
 
     }
 
     public void updateDislikes( ActionEvent e ){
-        oburr.user.Tester.updateDislikedInfo();
+        UserUpdater.updateDislikedInfo();
     }
 
     public void back( ActionEvent e ){

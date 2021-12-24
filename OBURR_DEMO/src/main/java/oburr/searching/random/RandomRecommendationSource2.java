@@ -7,8 +7,9 @@ package oburr.searching.random;
 
 import oburr.searching.Ingredient;
 import oburr.searching.Recipe;
-import oburr.searching.Resource;
-import oburr.searching.SearchResult;
+import oburr.searching.webSearching.Resource;
+import oburr.searching.webSearching.SearchResult;
+import oburr.searching.webSearching.WebRecipe;
 import oburr.user.User;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class RandomRecommendationSource2 extends Resource{
         setNutritionFactsPath(nutritionFactsPath);
     }
 
-    public Recipe getRecipe(SearchResult searchResult) {
+    public WebRecipe getRecipe(SearchResult searchResult) {
         try {
 
             long now = System.currentTimeMillis();
@@ -89,7 +90,7 @@ public class RandomRecommendationSource2 extends Resource{
             if (recipePage.select(nutritionFactsPath).first() != null) {
                 nutritionFacts = recipePage.select(nutritionFactsPath).first().text();
             }
-            return new Recipe(recipeTitle, platformName, imageUrl,
+            return new WebRecipe(recipeTitle, platformName, imageUrl,
                         recipeIngredients, recipeDescription,
                         recipeTimeInfo, nutritionFacts, user);
         }

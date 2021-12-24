@@ -7,12 +7,12 @@ package oburr.searching.random;
 
 import oburr.searching.Ingredient;
 import oburr.searching.Recipe;
-import oburr.searching.Resource;
-import oburr.searching.SearchResult;
+import oburr.searching.webSearching.Resource;
+import oburr.searching.webSearching.SearchResult;
+import oburr.searching.webSearching.WebRecipe;
 import oburr.user.User;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -23,7 +23,7 @@ import org.jsoup.select.Elements;
 /**
  * a class to define and use the searching functions of the resource that will be used for scrapping
  */
-public class RandomRecommendationSource extends Resource{
+public class RandomRecommendationSource extends Resource {
 
 
     protected String searchURL;
@@ -48,7 +48,7 @@ public class RandomRecommendationSource extends Resource{
         setNutritionFactsPath(nutritionFactsPath);
     }
 
-    public Recipe getRecipe(SearchResult searchResult) {
+    public WebRecipe getRecipe(SearchResult searchResult) {
         try {
 
             long now = System.currentTimeMillis();
@@ -81,7 +81,7 @@ public class RandomRecommendationSource extends Resource{
 
                 nutritionFacts = nutritionFacts.substring(0, nutritionFacts.lastIndexOf('.'));
             }
-            return new Recipe(recipeTitle, platformName, imageUrl,
+            return new WebRecipe(recipeTitle, platformName, imageUrl,
                         recipeIngredients, recipeDescription,
                         recipeTimeInfo, nutritionFacts, user);
         }

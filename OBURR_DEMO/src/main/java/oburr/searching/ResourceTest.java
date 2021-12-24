@@ -4,17 +4,10 @@ import oburr.searching.webSearching.AllRecipesResource;
 import oburr.searching.webSearching.FoodNetworkResource;
 import oburr.searching.webSearching.MyRecipesResource;
 import oburr.searching.webSearching.Resource;
+import oburr.searching.webSearching.SearchResult;
 import oburr.user.User;
 
 import  java.util.ArrayList;
-
-import java.util.Scanner;
-
-import javax.swing.JFileChooser;
-
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.awt.image.BufferedImage;
 
 public class ResourceTest {
 
@@ -67,6 +60,7 @@ public class ResourceTest {
                 ""
         );
 
+        /*
         ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
 
         String str = "potato,onion";
@@ -116,6 +110,16 @@ public class ResourceTest {
             System.out.println(oburrRecipe.getRecipeName());
         }
 
+
+         */
+
+        ArrayList<SearchResult> s = allRecipes.findResults(null,"potato soup");
+
+        for(SearchResult ss: s){
+            System.out.println(ss.getRecipeTitle());
+        }
+        OburrResource oR = new OburrResource(user);
+        System.out.println(oR.bringRecipes(0,0).size());
         }
 
     }

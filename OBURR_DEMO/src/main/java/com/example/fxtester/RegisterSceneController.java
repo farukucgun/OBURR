@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import oburr.user.UserUpdater;
 
 import java.io.IOException;
 
@@ -46,7 +47,7 @@ public class RegisterSceneController {
             registerErrorLabel.setText( "Passwords does not match");
         }
         else{
-            if( oburr.user.Tester.register( registerUserName.getText(), registerPassword1.getText() ) ){
+            if( UserUpdater.register( registerUserName.getText(), registerPassword1.getText() ) ){
                 changeSceneFromRegister( e );
             }
             else{

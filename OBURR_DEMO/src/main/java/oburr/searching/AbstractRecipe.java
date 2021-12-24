@@ -20,10 +20,11 @@ public abstract class AbstractRecipe {
     protected ArrayList<Ingredient> recipeIngredients;
     protected int  totalTime, difficultyLevel, calories, recipeScore;
 
-    private boolean isSuitable;
+    private boolean isSuitable ;
 
     public AbstractRecipe(String recipeName, ArrayList<Ingredient> recipeIngredients,
                   String recipeSteps, String timeInfo, int totalTime, int calories, String nutritionFacts, User user){
+        isSuitable = true;
 
         setRecipeName(recipeName);
         setRecipeIngredients(recipeIngredients);
@@ -32,6 +33,7 @@ public abstract class AbstractRecipe {
         setTotalTime(totalTime);
         setNutritionFacts(nutritionFacts);
         setCalories(calories);
+        setIsSuitable( user );
 
         recipeScore = 0;
         setRecipeScore(user);
@@ -191,7 +193,18 @@ public abstract class AbstractRecipe {
      * @param user
      */
     public void setIsSuitable(User user){
-
+        for( Ingredient i: user.getAllergies() ){
+            if( included( i ) ){
+                isSuitable = false;
+                return;
+            }
+        }
+        for( Ingredient i: user.getBannedIngredients() ){
+            if( included( i ) ){
+                isSuitable = false;
+                return;
+            }
+        }
     }
 
     /**
@@ -260,7 +273,7 @@ public abstract class AbstractRecipe {
      * accessor for isSuitable
      * @return
      */
-    public boolean isSuitable(){ return isSuitable; }
+    public boolean getIsSuitable(){ return isSuitable; }
 
 
 }

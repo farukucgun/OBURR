@@ -20,66 +20,87 @@
             <Image url="@../../../ProfileSymbol.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="40.0" layoutX="225.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="35.0" fitWidth="40.0" layoutX="225.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../DietPlan.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="225.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="225.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Blacklist.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="225.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="225.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Likes.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="225.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="416.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Dislikes.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="33.0" layoutX="419.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="35.0" fitWidth="33.0" layoutX="419.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../AddRecipe.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="419.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="419.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../../../EditInfo.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="417.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="417.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../../../Favorites.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="419.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="418.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../AddedRecipes.png" />
          </image>
       </ImageView>
       <Label layoutX="261.0" layoutY="170.0" text="Name Surname">
          <font>
-            <Font size="36.0" />
+            <Font name="Book Antiqua" size="36.0" />
          </font>
       </Label>
-      <Button layoutX="267.0" layoutY="248.0" mnemonicParsing="false" onAction="#toDietTypeScene" style="-fx-background-color: #F7EA84;" text="MODIFY DIET PLAN">
+      <Button layoutX="267.0" layoutY="261.0" mnemonicParsing="false" onAction="#toDietTypeScene" style="-fx-background-color: #F7EA84;" text="MODIFY DIET PLAN">
          <font>
-            <Font name="Dubai Light" size="12.0" />
+            <Font name="Book Antiqua" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="267.0" layoutY="297.0" mnemonicParsing="false" onAction="#toAllergiesScene" style="-fx-background-color: #F7EA84;" text="BLACKLIST/ALLERGIES" />
-      <Button layoutX="267.0" layoutY="342.0" mnemonicParsing="false" onAction="#toLikesScene" style="-fx-background-color: #F7EA84;" text="LIKES" />
-      <Button layoutX="267.0" layoutY="389.0" mnemonicParsing="false" onAction="#toDislikesScene" style="-fx-background-color: #F7EA84;" text="DISLIKES" />
-      <Button layoutX="459.0" layoutY="248.0" mnemonicParsing="false" style="-fx-background-color: #F7EA84;" text="ADDED RECIPES" />
-      <Button layoutX="459.0" layoutY="297.0" mnemonicParsing="false" style="-fx-background-color: #F7EA84;" text="ADD A RECIPE" />
-      <Button layoutX="459.0" layoutY="342.0" mnemonicParsing="false" style="-fx-background-color: #F7EA84;" text="FAVORITES" />
-      <Button layoutX="459.0" layoutY="388.0" mnemonicParsing="false" style="-fx-background-color: #F7EA84;" text="EDIT INFO" />
+      <Button layoutX="267.0" layoutY="310.0" mnemonicParsing="false" onAction="#toAllergiesScene" style="-fx-background-color: #F7EA84;" text="ALLERGIES">
+         <font>
+            <Font name="Book Antiqua" size="12.0" />
+         </font></Button>
+      <Button layoutX="267.0" layoutY="360.0" mnemonicParsing="false" onAction="#toLikesScene" style="-fx-background-color: #F7EA84;" text="LIKES">
+         <font>
+            <Font name="Book Antiqua" size="12.0" />
+         </font></Button>
+      <Button layoutX="458.0" layoutY="359.0" mnemonicParsing="false" onAction="#toDislikesScene" style="-fx-background-color: #F7EA84;" text="DISLIKES">
+         <font>
+            <Font name="Book Antiqua" size="12.0" />
+         </font></Button>
+      <Button layoutX="459.0" layoutY="261.0" mnemonicParsing="false" onAction="#toAddedRecipesScene" style="-fx-background-color: #F7EA84;" text="ADDED RECIPES">
+         <font>
+            <Font name="Book Antiqua" size="12.0" />
+         </font></Button>
+      <Button layoutX="458.0" layoutY="310.0" mnemonicParsing="false" onAction="#toAddRecipeScene" style="-fx-background-color: #F7EA84;" text="ADD A RECIPE">
+         <font>
+            <Font name="Book Antiqua" size="12.0" />
+         </font></Button>
+      <Button layoutX="459.0" layoutY="342.0" mnemonicParsing="false" style="-fx-background-color: #F7EA84;" text="FAVORITES" visible="false">
+         <font>
+            <Font name="Book Antiqua" size="12.0" />
+         </font></Button>
+      <Button layoutX="459.0" layoutY="388.0" mnemonicParsing="false" style="-fx-background-color: #F7EA84;" text="EDIT INFO" visible="false">
+         <font>
+            <Font name="Book Antiqua" size="12.0" />
+         </font></Button>
       <Button layoutX="717.0" layoutY="22.0" mnemonicParsing="false" onAction="#back" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #237A7E;" text="BACK">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="Book Antiqua Bold" size="18.0" />
          </font>
       </Button>
    </children>

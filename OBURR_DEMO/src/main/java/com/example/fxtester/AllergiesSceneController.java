@@ -7,11 +7,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import oburr.searching.Ingredient;
+import oburr.user.UserUpdater;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -77,7 +77,7 @@ public class AllergiesSceneController {
 
 
     public void initialize(){
-        ArrayList<Ingredient> tmp = oburr.user.Tester.allergensFromDatabase();
+        ArrayList<Ingredient> tmp = UserUpdater.allergensFromDatabase();
         System.out.println(tmp);
         for( Ingredient i: tmp ){
             if( radioButton1.getText().equalsIgnoreCase( i.toString() ) ){
@@ -165,11 +165,11 @@ public class AllergiesSceneController {
         RadioButton radioButton = ( RadioButton ) e.getSource();
         if( !radioButton.getText().equals( "RadioButton") ){
             if( radioButton.isSelected() ){
-                oburr.user.Tester.addAllergenItem( radioButton.getText() );
+                UserUpdater.addAllergenItem( radioButton.getText() );
 
             }
             else {
-                oburr.user.Tester.removeAllergenItem( radioButton.getText() );
+                UserUpdater.removeAllergenItem( radioButton.getText() );
             }
         }
 
@@ -216,7 +216,7 @@ public class AllergiesSceneController {
 
     }
     public void updateAllergies( ActionEvent e ){
-        oburr.user.Tester.updateAllergenInfo();
+        UserUpdater.updateAllergenInfo();
     }
 
 
@@ -240,12 +240,27 @@ public class AllergiesSceneController {
         proceedButton.setVisible(true);
     }
 
+    public void changeScenetoMenu( ActionEvent event )  {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuScene.fxml"));
+            Parent root = loader.load();
+            MenuSceneController controller = loader.getController();
+            controller.getUpcomingRecipe( event );
+
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene( scene );
+            stage.show();
+        }
+        catch ( IOException e ){}
+    }
+
     public void changeSceneFromRegister( ActionEvent event )  {
-        changeScene( "MenuScene.fxml", event );
+        changeScenetoMenu( event );
     }
     public void proceed( ActionEvent e ){
         updateAllergies( e );
-        changeScene( "MenuScene.fxml", e );
+        changeScenetoMenu( e );
     }
 
 

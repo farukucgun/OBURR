@@ -8,13 +8,12 @@ import oburr.searching.*;
 
 import java.util.ArrayList;
 
-public class User implements Editable{
+public class User{
 
     private String name;
     private String password;
     private int userId;
     private String dietType;
-    private boolean isEditable;
 
     private ArrayList<Ingredient> dislikedIngredients = new ArrayList<Ingredient>();
     private ArrayList<Ingredient> likedIngredients = new ArrayList<Ingredient>();
@@ -50,27 +49,20 @@ public class User implements Editable{
     public void setBannedIngredients( ArrayList<Ingredient> bannedIngredients ){
         this.bannedIngredients = bannedIngredients;
     }
-    public void lock(){
-        isEditable = false;
+
+
+    public void updateName(String name){
+        this.name = name;
+        DBCaller dbCaller = new DBCaller();
+        dbCaller.updateName(this);
     }
-
-    public void unlock(){
-        isEditable = true;
-    }
-
-
-    public void updateName(String name){}
 
     public void updatePassword(String password){
-        check(password);
 
-        if(isEditable){
-            this.name = name;
-            DBCaller dbCaller = new DBCaller();
-            dbCaller.updatePassword(this);
-        }
+        this.password = password;
+        DBCaller dbCaller = new DBCaller();
+        dbCaller.updatePassword(this);
 
-        lock();
     }
     public void updateAllergenItems( Ingredient i ){
         allergenIngredients.add( i );
@@ -92,19 +84,19 @@ public class User implements Editable{
 
     }
     public void updateDiet(){}
-    public void setIsEditable(boolean isEditable){
-        this.isEditable = isEditable;
-    }
+
 
     public String getName(){ return name;}
     public int getUserId(){ return userId;}
     public String getPassword(){ return password;}
     public String getDietType(){ return dietType;}
-    public boolean getIsEditable(){ return isEditable;}
     public ArrayList<Ingredient> getDisLikedIngredients(){ return dislikedIngredients;}
     public ArrayList<Ingredient> getLikedIngredients(){ return likedIngredients;}
     public ArrayList<Ingredient> getAllergies(){
         return allergenIngredients;
+    }
+    public ArrayList<Ingredient> getBannedIngredients(){
+        return bannedIngredients;
     }
 
     public String getAllergenIngredientsAsString(){
@@ -129,9 +121,7 @@ public class User implements Editable{
         return s;
     }
 
-    public boolean check(String password){
-        return (this.password.equals(password));
-    }
+
 
 
 }

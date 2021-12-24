@@ -2,17 +2,27 @@ package com.example.fxtester;
 
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import oburr.searching.Main_Menu;
+import oburr.searching.webSearching.WebRecipe;
+import oburr.user.User;
+import oburr.user.UserUpdater;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MenuSceneController {
 
@@ -34,14 +44,17 @@ public class MenuSceneController {
 
     @FXML
     private ImageView menuLogo;
+
     @FXML
-    private Button menuEatingProgramButton;
+    private Button menuSearchButton;
     @FXML
-    private Button menuSearchingButton;
+    private Button menuIngredientSearchButton;
+    @FXML
+    private Button menuDiscoverButton;
+    @FXML
+    private Button menuRandomSearchButton;
     @FXML
     private Button menuSettingsButton;
-    @FXML
-    private Button menuFavoritesButton;
     @FXML
     private Button menuProfileButton;
     @FXML
@@ -62,10 +75,11 @@ public class MenuSceneController {
         slider.setOnFinished( (e)-> {
             menuLogo.setVisible(true);
             menuProfileButton.setVisible(true);
-            menuFavoritesButton.setVisible(true);
             menuSettingsButton.setVisible(true);
-            menuSearchingButton.setVisible(true);
-            menuEatingProgramButton.setVisible(true);
+            menuSearchButton.setVisible(true);
+            menuIngredientSearchButton.setVisible(true);
+            menuDiscoverButton.setVisible(true);
+            menuRandomSearchButton.setVisible(true);
             menuDropMenuButton.setVisible(true);
         } );
     }
@@ -79,10 +93,11 @@ public class MenuSceneController {
 
         menuLogo.setVisible(false);
         menuProfileButton.setVisible(false);
-        menuFavoritesButton.setVisible(false);
         menuSettingsButton.setVisible(false);
-        menuSearchingButton.setVisible(false);
-        menuEatingProgramButton.setVisible(false);
+        menuSearchButton.setVisible(false);
+        menuIngredientSearchButton.setVisible(false);
+        menuDiscoverButton.setVisible(false);
+        menuRandomSearchButton.setVisible(false);
         menuDropMenuButton.setVisible(false);
         slider.setOnFinished( (e)-> {} );
     }
@@ -90,5 +105,117 @@ public class MenuSceneController {
     public void toProfileScene( ActionEvent e ){
         changeScene( "ProfileScene.fxml", e );
     }
+    public void toSettingsScene( ActionEvent e ){
+        changeScene( "SettingsScene.fxml", e );
+    }
+    public void toSearchScene( ActionEvent e ){
+        changeScene( "SearchMenuScene.fxml", e );
+    }
+    public void toIngredientSearchScene( ActionEvent e ){
+        changeScene( "IngredientSearchScene.fxml", e );
+    }
+    public void toRandomSearchScene( ActionEvent e ){
+        changeScene( "RandomSearchScene.fxml", e );
+    }
+    public void toDiscoverScene( ActionEvent e ){
+        changeScene( "DiscoverMenu.fxml", e );
+    }
 
+    // Upcoming events
+
+    Scene scene;
+    Parent root;
+
+    @FXML
+    private HBox hbox;
+
+    @FXML
+    private ImageView img;
+
+    @FXML
+    private Label name;
+
+    @FXML
+    private Label r;
+
+    @FXML
+    private Button zartzurt;
+
+    WebRecipe recipe;
+    @FXML
+    void openRecipe(Event event){
+        String name = null;
+        Image img = null;
+        String recipeSteps = null;
+        String time = null;
+        String ingr = "";
+        String facts = null;
+        String source = null;
+        String calories = "Calories: ";
+        boolean isSuitable = true;
+
+
+        name = recipe.getRecipeName();
+        String url = recipe.getImageUrl();
+        img = new Image(url);
+        recipeSteps = recipe.getRecipeSteps();
+        isSuitable = recipe.getIsSuitable();
+        if ((recipe.getTotalTime()) == 0) {
+            time = "time: N/A";
+        } else {
+            time = recipe.getTimeInfo();
+        }
+        ArrayList ingrList = recipe.getRecipeIngredients();
+        for (int i = 0; i < ingrList.size(); i++) {
+            ingr = ingr + " - " + ingrList.get(i) + "\n ";
+        }
+        facts = recipe.getNutritionFacts();
+        source = recipe.getRecipeResource();
+        if ((recipe.getCalories()) == 0) {
+            calories = "calories: N/A";
+        } else {
+            calories = calories + String.valueOf(recipe.getCalories());
+        }
+
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("RecipePage.fxml"));
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        RecipePageController recipiePage = loader.getController();
+        recipiePage.displayRecipe(name, img, recipeSteps, time, ingr, facts, source, calories, isSuitable );
+        recipiePage.fromMenu(  );
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    void getUpcomingRecipe( ActionEvent e ) {
+        User user = UserUpdater.returnUser();
+
+        Main_Menu allRecipes = new Main_Menu(
+                "AllRecipes.com",
+                "https://www.allrecipes.com/recipes/", true, user, "dessert", ".category-page-list-inner > .karma-main-column.category-page-list-content__recipe-card.category-"
+                + "page-list-content > div.card__category.card.component > .card__imageContainer" ,".card__title" ,".manual-link-behavior", ".paragraph > p",
+                ".ingredients-item-name",
+                "body > div.docked-sharebar-content-container > div > main > div.recipe-container.two-col-container > div.content.two-col-main-content.karma-content-container > "
+                        + "div.recipe-content.two-col-content.karma-main-column > div.two-col-content-wrapper > div.recipe-content-container > div.lead-content-wrapper.two-col-style > "
+                        + "div.lead-content-aside-wrapper > div > section > div:nth-child(1) > div:nth-child(3) > div.recipe-meta-item-body",
+                ".recipe-nutrition-section.partial > .section-body"
+        );
+
+        recipe = allRecipes.getRecipe( null );
+
+        hbox.setVisible(true);
+        name.setText(recipe.getRecipeName());
+        String recipeImg1URL = recipe.getImageUrl();
+        Image recipeImg1 = new Image(recipeImg1URL);
+        img.setImage(recipeImg1);
+        r.setText(recipe.getRecipeResource());
+    }
 }

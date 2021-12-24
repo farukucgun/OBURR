@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
+import oburr.user.UserUpdater;
 
 import java.io.IOException;
 
@@ -62,7 +63,7 @@ public class DietTypeController {
 
 
     public void initialize(){
-        String dietType = oburr.user.Tester.dietTypeFromDatabase();
+        String dietType = UserUpdater.dietTypeFromDatabase();
         if( radioButton1.getText().equals( dietType ) ){
             radioButton1.setSelected(true);
         }
@@ -91,31 +92,31 @@ public class DietTypeController {
 
     public void radioButtonListener( ActionEvent e ){
         RadioButton radioButton = (RadioButton) e.getSource();
-        oburr.user.Tester.changeDietType( radioButton.getText() );
-        oburr.user.Tester.changeBannedItems( radioButton.getText() );
+        UserUpdater.changeDietType( radioButton.getText() );
+        UserUpdater.changeBannedItems( radioButton.getText() );
         if( radioButton.getText().equalsIgnoreCase( "protein-based" ) ){
             for( String i: PROTEIN_BASED_LIKES){
-                oburr.user.Tester.addLikedItem( i );
+                UserUpdater.addLikedItem( i );
             }
         }
         else if( radioButton.getText().equalsIgnoreCase( "keto" ) ){
             for( String i: KETO_LIKES){
-                oburr.user.Tester.addLikedItem( i );
+                UserUpdater.addLikedItem( i );
             }
         }
         else if( radioButton.getText().equalsIgnoreCase( "low carb" ) ){
             for( String i: LOW_CARB_LIKES){
-                oburr.user.Tester.addLikedItem( i );
+                UserUpdater.addLikedItem( i );
             }
         }
         else if( radioButton.getText().equalsIgnoreCase( "gluten free" ) ){
             for( String i: GLUTEN_FREE_LIKES){
-                oburr.user.Tester.addLikedItem( i );
+                UserUpdater.addLikedItem( i );
             }
         }
         else if( radioButton.getText().equalsIgnoreCase( "paleo" ) ){
             for( String i: PALEO_LIKES){
-                oburr.user.Tester.addLikedItem( i );
+                UserUpdater.addLikedItem( i );
             }
         }
 
@@ -125,33 +126,33 @@ public class DietTypeController {
     public void removeLikedItem( ){
         if( !radioButton1.isSelected() ){
             for( String i: PROTEIN_BASED_LIKES){
-                oburr.user.Tester.removeLikedItem( i );
+                UserUpdater.removeLikedItem( i );
             }
         }
         if( !radioButton2.isSelected() ){
             for( String i: KETO_LIKES){
-                oburr.user.Tester.removeLikedItem( i );
+                UserUpdater.removeLikedItem( i );
             }
         }
         if( !radioButton3.isSelected() ){
             for( String i: LOW_CARB_LIKES){
-                oburr.user.Tester.removeLikedItem( i );
+                UserUpdater.removeLikedItem( i );
             }
         }
         if( !radioButton4.isSelected() ){
             for( String i: GLUTEN_FREE_LIKES){
-                oburr.user.Tester.removeLikedItem( i );
+                UserUpdater.removeLikedItem( i );
             }
         }
         if( !radioButton7.isSelected() ){
             for( String i: PALEO_LIKES){
-                oburr.user.Tester.removeLikedItem( i );
+                UserUpdater.removeLikedItem( i );
             }
         }
     }
     public void updateDietType( ActionEvent e ){
-        oburr.user.Tester.updateDietTypeInfo();
-        oburr.user.Tester.updateLikedInfo();
+        UserUpdater.updateDietTypeInfo();
+        UserUpdater.updateLikedInfo();
     }
 
     public void reset( ActionEvent e ){
@@ -164,8 +165,8 @@ public class DietTypeController {
         radioButton7.setSelected(false);
         radioButton8.setSelected(false);
 
-        oburr.user.Tester.removeDietType();
-        oburr.user.Tester.changeBannedItems( "");
+        UserUpdater.removeDietType();
+        UserUpdater.changeBannedItems( "");
         removeLikedItem();
     }
     public void back( ActionEvent e ){

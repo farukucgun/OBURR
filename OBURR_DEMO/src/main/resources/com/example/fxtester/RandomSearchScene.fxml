@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="520.0" prefWidth="825.0" style="-fx-background-color: #F7EA84;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fxtester.RandomSearchController">
+   <children>
+      <ScrollPane layoutX="151.0" layoutY="143.0" prefHeight="342.0" prefWidth="422.0">
+         <content>
+            <AnchorPane prefHeight="287.0" prefWidth="338.0">
+               <children>
+                  <HBox fx:id="hbox1" layoutX="37.0" onMouseClicked="#openRandomRecipe" prefHeight="120.0" prefWidth="342.0" style="-fx-border-color: #B22222;">
+                     <children>
+                        <ImageView fx:id="img1" fitHeight="119.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true" />
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="name1" layoutX="10.0" prefHeight="51.0" prefWidth="180.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="r1" layoutX="10.0" layoutY="60.0" prefHeight="40.0" prefWidth="180.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="hbox2" layoutX="37.0" layoutY="120.0" onMouseClicked="#openRandomRecipe" prefHeight="120.0" prefWidth="342.0" style="-fx-border-color: #B22222;">
+                     <children>
+                        <ImageView fx:id="img2" fitHeight="117.0" fitWidth="122.0" pickOnBounds="true" preserveRatio="true" />
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="name2" layoutX="10.0" layoutY="14.0" prefHeight="51.0" prefWidth="180.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="r2" layoutX="10.0" layoutY="59.0" prefHeight="40.0" prefWidth="180.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="hbox3" layoutX="37.0" layoutY="240.0" onMouseClicked="#openRandomRecipe" prefHeight="134.0" prefWidth="341.0" style="-fx-border-color: #B22222;">
+                     <children>
+                        <ImageView fx:id="img3" fitHeight="134.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true" />
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="name3" layoutX="10.0" layoutY="21.0" prefHeight="51.0" prefWidth="180.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="r3" layoutX="10.0" layoutY="68.0" prefHeight="40.0" prefWidth="180.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <AnchorPane layoutX="80.0" layoutY="38.0" prefHeight="120.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="breakfast" layoutX="67.0" layoutY="13.0" mnemonicParsing="false" onAction="#getRandom" prefHeight="26.0" prefWidth="70.0" text="Breakfast" />
+            <Button fx:id="lunch" layoutX="67.0" layoutY="60.0" mnemonicParsing="false" onAction="#getRandom" prefWidth="70.0" text="Lunch" />
+            <Button fx:id="dinner" layoutX="183.0" layoutY="60.0" mnemonicParsing="false" onAction="#getRandom" prefWidth="70.0" text="Dinner" />
+            <Button fx:id="snack" layoutX="183.0" layoutY="14.0" mnemonicParsing="false" onAction="#getRandom" prefWidth="70.0" text="Snack" />
+            <Button fx:id="quick" layoutX="300.0" layoutY="14.0" mnemonicParsing="false" onAction="#getRandom" prefWidth="70.0" text="Quick" />
+            <Button fx:id="drink" layoutX="300.0" layoutY="60.0" mnemonicParsing="false" onAction="#getRandom" prefWidth="70.0" text="Drink" />
+            <Button fx:id="holiday" layoutX="423.0" layoutY="13.0" mnemonicParsing="false" onAction="#getRandom" prefWidth="70.0" text="Holiday" />
+            <Button fx:id="dessert" layoutX="423.0" layoutY="60.0" mnemonicParsing="false" onAction="#getRandom" prefWidth="70.0" text="Dessert" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="backButton" layoutX="714.0" layoutY="39.0" mnemonicParsing="false" onAction="#back" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #237A7E;" text="BACK">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
