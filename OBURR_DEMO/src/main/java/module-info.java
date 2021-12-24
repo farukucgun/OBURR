@@ -14,6 +14,6 @@ module com.example.fxtester {
     requires org.jsoup;
     requires java.sql.rowset;
 
-    opens com.example.fxtester to javafx.fxml;
-    exports com.example.fxtester;
+    opens com.example.Oburr to javafx.fxml;
+    exports com.example.Oburr;
 }
