@@ -1,3 +1,7 @@
+/**
+ * @EnesBektas
+ * java version 14.0.2
+ */
 package com.example.fxtester;
 
 import javafx.event.ActionEvent;
@@ -18,6 +22,12 @@ public class RegisterSceneController {
 
     // Change scene
     Stage stage;
+
+    /**
+     * Changes current scene
+     * @param fxml fxml name of the next scene
+     * @param event action event
+     */
     public void changeScene( String fxml, ActionEvent event )  {
         try{
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -31,6 +41,7 @@ public class RegisterSceneController {
 
     // Register scene
 
+    // GUI variables
     @FXML
     private TextField registerUserName;
     @FXML
@@ -40,10 +51,13 @@ public class RegisterSceneController {
     @FXML
     private Label registerErrorLabel;
 
+    /**
+     * This method is for signin up a new user
+     * @param e action event
+     */
     public void signUpButton( ActionEvent e ){
         registerErrorLabel.setText("");
         if( !registerPassword1.getText().equals( registerPassword2.getText() ) ){
-            //Passwords are not the same
             registerErrorLabel.setText( "Passwords does not match");
         }
         else{
@@ -51,18 +65,26 @@ public class RegisterSceneController {
                 changeSceneFromRegister( e );
             }
             else{
-                // username already exist
                 registerErrorLabel.setText( "Username is already in use");
             }
         }
     }
 
+    /**
+     * Changes scene to login scene
+     * @param e action event
+     */
     public void toSignIn( ActionEvent e ) {
         changeScene( "LoginScene.fxml", e );
     }
 
 
-    // From Register
+    // After register scene
+
+    /**
+     * Changes scene to diet type scene and calls a method from DietTypeController to initialize diet type scene
+     * @param event action event
+     */
     public void changeSceneFromRegister( ActionEvent event )  {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DietTypeScene.fxml"));

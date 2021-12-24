@@ -1,3 +1,7 @@
+/**
+ * @EnesBektas
+ * java version 14.0.2
+ */
 package com.example.fxtester;
 
 import javafx.event.ActionEvent;
@@ -17,6 +21,12 @@ public class LoginSceneController {
 
     // Change scene
     Stage stage;
+
+    /**
+     * Changes current scene
+     * @param fxml fxml name of the next scene
+     * @param event action event
+     */
     public void changeScene( String fxml, ActionEvent event )  {
         try{
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -28,6 +38,10 @@ public class LoginSceneController {
         catch ( IOException e ){}
     }
 
+    /**
+     * Changes scene to menu and calls a method from MenuSceneController to initialize menu scene
+     * @param event action event
+     */
     public void changeScenetoMenu( ActionEvent event )  {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuScene.fxml"));
@@ -45,6 +59,7 @@ public class LoginSceneController {
 
     // Login scene
 
+    // GUI variables
     @FXML
     private TextField loginUserName;
     @FXML
@@ -52,17 +67,24 @@ public class LoginSceneController {
     @FXML
     private Label loginErrorLabel;
 
+    /**
+     * This method is for signin in an existing user
+     * @param e action event
+     */
     public void signInButton( ActionEvent e ) {
         loginErrorLabel.setText("");
         if( UserUpdater.login( loginUserName.getText(), loginPassword.getText() ) ){
             changeScenetoMenu( e );
         }
         else{
-            // incorrect username or password
             loginErrorLabel.setText( "Incorrect username or password");
         }
     }
 
+    /**
+     * Changes scene to register scene
+     * @param e action event
+     */
     public void toSignUp( ActionEvent e ) {
         changeScene( "RegisterScene.fxml", e );
     }

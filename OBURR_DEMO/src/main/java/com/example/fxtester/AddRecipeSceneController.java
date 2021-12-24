@@ -1,3 +1,7 @@
+/**
+ * @EnesBektas
+ * java version 14.0.2
+ */
 package com.example.fxtester;
 
 import javafx.embed.swing.SwingFXUtils;
@@ -26,6 +30,12 @@ public class AddRecipeSceneController {
 
     // Change scene
     Stage stage;
+
+    /**
+     * Changes current scene
+     * @param fxml fxml name of the next scene
+     * @param event action event
+     */
     public void changeScene( String fxml, ActionEvent event )  {
         try{
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -39,6 +49,7 @@ public class AddRecipeSceneController {
 
     // Add Recipe Scene
 
+    // GUI variables
     @FXML
     private TextField recipeName;
     @FXML
@@ -59,6 +70,11 @@ public class AddRecipeSceneController {
     private String extensionType;
     private BufferedImage bufferedImage;
 
+    /**
+     * Action listener for the button for adding image
+     * @param e action event
+     * @throws IOException if file cannot be read
+     */
     public void addPicture(ActionEvent e ) throws IOException {
         FileChooser fileChooser = new FileChooser();
 
@@ -80,6 +96,10 @@ public class AddRecipeSceneController {
 
     }
 
+    /**
+     * Adds recipe to database
+     * @param e action event
+     */
     public void addRecipe( ActionEvent e ){
         try{
             int calories = Integer.parseInt(recipeCalories.getText() );
@@ -94,12 +114,11 @@ public class AddRecipeSceneController {
         }
     }
 
-
-
+    /**
+     * Turns back to profile
+     * @param e action event
+     */
     public void back( ActionEvent e ){
         changeScene( "ProfileScene.fxml", e );
     }
-
-
-
 }

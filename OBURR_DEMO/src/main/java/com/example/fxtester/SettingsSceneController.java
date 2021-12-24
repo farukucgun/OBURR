@@ -1,3 +1,7 @@
+/**
+ * @EnesBektas
+ * java version 14.0.2
+ */
 package com.example.fxtester;
 
 import javafx.event.ActionEvent;
@@ -19,6 +23,12 @@ public class SettingsSceneController {
 
     // Change scene
     Stage stage;
+
+    /**
+     * Changes current scene
+     * @param fxml fxml name of the next scene
+     * @param event action event
+     */
     public void changeScene( String fxml, ActionEvent event )  {
         try{
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -32,12 +42,6 @@ public class SettingsSceneController {
 
     @FXML
     private TextField userNameTextField;
-
-    public void changeName( ActionEvent e ){
-        UserUpdater.changeUserName( userNameTextField.getText() );
-    }
-
-
     @FXML
     private PasswordField newPasswordField1;
     @FXML
@@ -47,6 +51,18 @@ public class SettingsSceneController {
     @FXML
     private PasswordField oldPasswordField;
 
+    /**
+     * Updates username
+     * @param e action event
+     */
+    public void changeName( ActionEvent e ){
+        UserUpdater.changeUserName( userNameTextField.getText() );
+    }
+
+    /**
+     * Updates password
+     * @param e action event
+     */
     public void changePassword( ActionEvent e ){
         String oldPassword = UserUpdater.returnPassword();
 
@@ -67,6 +83,10 @@ public class SettingsSceneController {
         }
     }
 
+    /**
+     * Changes scene to menu and calls a method from MenuSceneController to initialize menu scene
+     * @param event action event
+     */
     public void changeScenetoMenu( ActionEvent event )  {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuScene.fxml"));
@@ -82,6 +102,10 @@ public class SettingsSceneController {
         catch ( IOException e ){}
     }
 
+    /**
+     * Turns back to menu scene
+     * @param e action event
+     */
     public void back( ActionEvent e ){
         changeScenetoMenu( e );
     }

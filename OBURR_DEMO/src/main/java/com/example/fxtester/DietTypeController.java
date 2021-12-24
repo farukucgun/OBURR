@@ -1,3 +1,7 @@
+/**
+ * @EnesBektas
+ * java version 14.0.2
+ */
 package com.example.fxtester;
 
 import javafx.event.ActionEvent;
@@ -16,20 +20,22 @@ import java.io.IOException;
 
 public class DietTypeController {
 
-
+    // Constant lists for liked items according to diet type
     public static final String[] PROTEIN_BASED_LIKES = { "Egg", "Beef", "Chicken", "Turkey", "Bean", "Fish", "Lentil", "Oat", "Yogurt" };
-
     public static final String[] KETO_LIKES = { "Bacon", "Butter", "Cheese", "Chicken", "Cream", "Egg", "Onion", "Pepper", "Steak", "Tomatoes", };
-
     public static final String[] LOW_CARB_LIKES = { "Apple", "Cauliflower", "Egg", "Fish", "Meat", "Nut", "Olive oil", "Strawberry", "Yogurt" };
-
     public static final String[] GLUTEN_FREE_LIKES = { "Bulgur", "Butter", "Cheese", "Corn", "Fish", "Meat", "Milk", "Potato", "Rice", "Soy" };
-
     public static final String[] PALEO_LIKES = { "Apple", "Beef", "Broccoli", "Carrot", "Chicken", "Egg", "Garlic", "Onion", "Pepper", "Potato", "Tomatoes" };
 
 
     // Change scene
     Stage stage;
+
+    /**
+     * Changes current scene
+     * @param fxml fxml name of the next scene
+     * @param event action event
+     */
     public void changeScene( String fxml, ActionEvent event )  {
         try{
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -44,6 +50,7 @@ public class DietTypeController {
 
     // DietType Scene
 
+    // GUI variables (radio buttons are connected)
     @FXML
     private RadioButton radioButton1;
     @FXML
@@ -61,7 +68,9 @@ public class DietTypeController {
     @FXML
     private RadioButton radioButton8;
 
-
+    /**
+     * Selects radio buttons according to information from database
+     */
     public void initialize(){
         String dietType = UserUpdater.dietTypeFromDatabase();
         if( radioButton1.getText().equals( dietType ) ){
@@ -90,6 +99,10 @@ public class DietTypeController {
         }
     }
 
+    /**
+     * Changes diet type, and updates banned items and liked items according to diet type
+     * @param e action event
+     */
     public void radioButtonListener( ActionEvent e ){
         RadioButton radioButton = (RadioButton) e.getSource();
         UserUpdater.changeDietType( radioButton.getText() );
@@ -119,10 +132,12 @@ public class DietTypeController {
                 UserUpdater.addLikedItem( i );
             }
         }
-
         removeLikedItem();
-
     }
+
+    /**
+     * Removes liked item when diet type is changed
+     */
     public void removeLikedItem( ){
         if( !radioButton1.isSelected() ){
             for( String i: PROTEIN_BASED_LIKES){
@@ -150,11 +165,21 @@ public class DietTypeController {
             }
         }
     }
+
+    /**
+     * Updates diet type and liked info that are in the database
+     * @param e action event
+     */
     public void updateDietType( ActionEvent e ){
         UserUpdater.updateDietTypeInfo();
         UserUpdater.updateLikedInfo();
     }
 
+    /**
+     * ActionListener for reset to default button
+     * Resets diet type to default (no diet type
+     * @param e action event
+     */
     public void reset( ActionEvent e ){
         radioButton1.setSelected(false);
         radioButton2.setSelected(false);
@@ -169,14 +194,20 @@ public class DietTypeController {
         UserUpdater.changeBannedItems( "");
         removeLikedItem();
     }
+
+    /**
+     * Turns back to profile scene
+     * @param e action event
+     */
     public void back( ActionEvent e ){
         changeScene( "ProfileScene.fxml", e );
     }
 
 
 
-    // From Register
+    // If this scene is displayed from register
 
+    // GUI variables
     @FXML
     private Button saveButton;
     @FXML
@@ -192,6 +223,9 @@ public class DietTypeController {
     @FXML
     private Label dietTypeLabel;
 
+    /**
+     * Changes visibility of the buttons
+     */
     public void fromRegister(){
         saveButton.setVisible(false);
         backButton.setVisible(false);
@@ -201,6 +235,11 @@ public class DietTypeController {
         greetingLabel1.setVisible(true);
         greetingLabel2.setVisible(true);
     }
+
+    /**
+     * Changes scene to likes scene and calls a method from LikesSceneController to initialize likes scene
+     * @param event action event
+     */
     public void changeSceneFromRegister( ActionEvent event ){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("LikesScene.fxml"));
@@ -215,6 +254,11 @@ public class DietTypeController {
         }
         catch ( IOException e ){}
     }
+
+    /**
+     * ActionListener for proceed button
+     * @param e action event
+     */
     public void proceed( ActionEvent e ){
         updateDietType( e );
         changeSceneFromRegister( e );

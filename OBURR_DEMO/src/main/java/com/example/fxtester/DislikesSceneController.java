@@ -1,3 +1,7 @@
+/**
+ * @EnesBektas
+ * java version 14.0.2
+ */
 package com.example.fxtester;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,8 +21,13 @@ import java.util.ArrayList;
 
 public class DislikesSceneController {
 
-
     // Change scene
+
+    /**
+     * Changes current scene
+     * @param fxml fxml name of the next scene
+     * @param event action event
+     */
     Stage stage;
     public void changeScene( String fxml, ActionEvent event )  {
         try{
@@ -34,6 +43,7 @@ public class DislikesSceneController {
 
     // Dislikes Scene
 
+    // GUI variables
     @FXML
     private CheckBox checkBox1;
     @FXML
@@ -122,10 +132,11 @@ public class DislikesSceneController {
     @FXML
     private CheckBox userCheckBox6;
 
-
+    /**
+     * Selects check boxes according to information from database
+     */
     public void initialize(){
         ArrayList<Ingredient> tmp = UserUpdater.dislikesFromDatabase();
-        System.out.println(tmp);
         for( Ingredient i: tmp ){
             if( checkBox1.getText().equals( i.toString() ) ){
                 checkBox1.setSelected(true);
@@ -262,7 +273,10 @@ public class DislikesSceneController {
         }
     }
 
-
+    /**
+     * Adds or removes disliked item when a checkbox is clicked
+     * @param e action event
+     */
     public void dislikesCheckBoxListener( ActionEvent e ){
         CheckBox checkBox = ( CheckBox ) e.getSource();
         if( !checkBox.getText().equals( "Add Ingredient") ){
@@ -277,17 +291,26 @@ public class DislikesSceneController {
 
     }
 
+    /**
+     * Updates dislikes that are in the database
+     * @param e action event
+     */
     public void updateDislikes( ActionEvent e ){
         UserUpdater.updateDislikedInfo();
     }
 
+    /**
+     * Turns back to profile scene
+     * @param e action event
+     */
     public void back( ActionEvent e ){
         changeScene( "ProfileScene.fxml", e );
     }
 
-
-
-
+    /**
+     * If user enters a new disliked item, adds it to user interface
+     * @param e action event
+     */
     public void addIngredient( ActionEvent e ){
         String str = enterIngredient.getText();
         if ( userCheckBox1.getText().equals( "Add Ingredient" ) ){
@@ -310,6 +333,9 @@ public class DislikesSceneController {
         }
     }
 
+    // If this scene is displayed from register
+
+    // GUI variables
     @FXML
     private Button saveButton;
     @FXML
@@ -319,12 +345,20 @@ public class DislikesSceneController {
     @FXML
     private Button proceedButton;
 
+    /**
+     * Changes visibility of the buttons
+     */
     public void fromRegister(){
         saveButton.setVisible(false);
         backButton.setVisible(false);
         skipButton.setVisible(true);
         proceedButton.setVisible(true);
     }
+
+    /**
+     * Changes scene to allergies scene and calls a method from AllergiesSceneController to initialize allergies scene
+     * @param event action event
+     */
     public void changeSceneFromRegister( ActionEvent event )  {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AllergiesScene.fxml"));
@@ -339,6 +373,11 @@ public class DislikesSceneController {
         }
         catch ( IOException e ){}
     }
+
+    /**
+     * ActionListener for proceed button
+     * @param e action event
+     */
     public void proceed( ActionEvent e ){
         updateDislikes( e );
         changeSceneFromRegister( e );

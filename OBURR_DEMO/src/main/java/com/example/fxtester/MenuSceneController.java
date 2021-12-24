@@ -1,3 +1,7 @@
+/**
+ * @EnesBektas
+ * java version 14.0.2
+ */
 package com.example.fxtester;
 
 import javafx.animation.TranslateTransition;
@@ -29,6 +33,12 @@ public class MenuSceneController {
 
     // Change scene
     Stage stage;
+
+    /**
+     * Changes current scene
+     * @param fxml fxml name of the next scene
+     * @param event action event
+     */
     public void changeScene( String fxml, ActionEvent event )  {
         try{
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -40,11 +50,12 @@ public class MenuSceneController {
         }
         catch ( IOException e ){}
     }
+
     //Menu scene
 
+    // GUI variables
     @FXML
     private ImageView menuLogo;
-
     @FXML
     private Button menuSearchButton;
     @FXML
@@ -62,7 +73,10 @@ public class MenuSceneController {
     @FXML
     private Rectangle menuBar;
 
-
+    /**
+     * Animation for bringing left menu
+     * @param event action event
+     */
     public void bringMenu( ActionEvent event ){
 
         TranslateTransition slider = new TranslateTransition();
@@ -83,6 +97,11 @@ public class MenuSceneController {
             menuDropMenuButton.setVisible(true);
         } );
     }
+
+    /**
+     * Animation for dropping left menu
+     * @param event action event
+     */
     public void dropMenu( ActionEvent event ){
 
         TranslateTransition slider = new TranslateTransition();
@@ -102,48 +121,71 @@ public class MenuSceneController {
         slider.setOnFinished( (e)-> {} );
     }
 
+    /**
+     * Turns scene to profile scene
+     * @param e action event
+     */
     public void toProfileScene( ActionEvent e ){
         changeScene( "ProfileScene.fxml", e );
     }
+    /**
+     * Turns scene to settings scene
+     * @param e action event
+     */
     public void toSettingsScene( ActionEvent e ){
         changeScene( "SettingsScene.fxml", e );
     }
+    /**
+     * Turns scene to search by name scene
+     * @param e action event
+     */
     public void toSearchScene( ActionEvent e ){
         changeScene( "SearchMenuScene.fxml", e );
     }
+    /**
+     * Turns scene to search by ingredients scene
+     * @param e action event
+     */
     public void toIngredientSearchScene( ActionEvent e ){
         changeScene( "IngredientSearchScene.fxml", e );
     }
+    /**
+     * Turns scene to random search scene
+     * @param e action event
+     */
     public void toRandomSearchScene( ActionEvent e ){
         changeScene( "RandomSearchScene.fxml", e );
     }
+    /**
+     * Turns scene to discover scene
+     * @param e action event
+     */
     public void toDiscoverScene( ActionEvent e ){
         changeScene( "DiscoverMenu.fxml", e );
     }
+
 
     // Upcoming events
 
     Scene scene;
     Parent root;
+    WebRecipe recipe;
 
+    // GUI variables
     @FXML
     private HBox hbox;
-
     @FXML
     private ImageView img;
-
     @FXML
     private Label name;
-
     @FXML
     private Label r;
 
-    @FXML
-    private Button zartzurt;
-
-    WebRecipe recipe;
-    @FXML
-    void openRecipe(Event event){
+    /**
+     * Opens recipe that is in the menu scene
+     * @param event action event
+     */
+    public void openRecipe(Event event){
         String name = null;
         Image img = null;
         String recipeSteps = null;
@@ -194,8 +236,12 @@ public class MenuSceneController {
         stage.setScene(scene);
         stage.show();
     }
-    @FXML
-    void getUpcomingRecipe( ActionEvent e ) {
+
+    /**
+     * Gets upcoming event
+     * @param e action event
+     */
+    public void getUpcomingRecipe( ActionEvent e ) {
         User user = UserUpdater.returnUser();
 
         Main_Menu allRecipes = new Main_Menu(

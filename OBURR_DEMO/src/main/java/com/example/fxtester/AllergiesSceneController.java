@@ -1,3 +1,7 @@
+/**
+ * @EnesBektas
+ * java version 14.0.2
+ */
 package com.example.fxtester;
 
 import javafx.event.ActionEvent;
@@ -20,6 +24,12 @@ public class AllergiesSceneController {
 
     // Change scene
     Stage stage;
+
+    /**
+     * Changes current scene
+     * @param fxml fxml name of the next scene
+     * @param event action event
+     */
     public void changeScene( String fxml, ActionEvent event )  {
         try{
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -31,8 +41,9 @@ public class AllergiesSceneController {
         catch ( IOException e ){}
     }
 
-    // Allergies/Blacklist Scene
+    // Allergies Scene
 
+    // GUI variables (radio buttons are not connected to each other, they are used for a better look)
     @FXML
     private RadioButton radioButton1;
     @FXML
@@ -75,10 +86,11 @@ public class AllergiesSceneController {
     @FXML
     private TextField enterIngredient;
 
-
+    /**
+     * Selects radio buttons according to information from database
+     */
     public void initialize(){
         ArrayList<Ingredient> tmp = UserUpdater.allergensFromDatabase();
-        System.out.println(tmp);
         for( Ingredient i: tmp ){
             if( radioButton1.getText().equalsIgnoreCase( i.toString() ) ){
                 radioButton1.setSelected(true);
@@ -159,8 +171,10 @@ public class AllergiesSceneController {
 
     }
 
-
-
+    /**
+     * Adds or removes allergen item when a radio button is clicked
+     * @param e action event
+     */
     public void buttonListener( ActionEvent e ){
         RadioButton radioButton = ( RadioButton ) e.getSource();
         if( !radioButton.getText().equals( "RadioButton") ){
@@ -175,6 +189,10 @@ public class AllergiesSceneController {
 
     }
 
+    /**
+     * If user enters a new allergen item, adds it to user interface
+     * @param e action event
+     */
     public void addIngredient( ActionEvent e ){
         String str = enterIngredient.getText();
         if ( userRadioButton1.getText().equals( "RadioButton" ) ){
@@ -215,15 +233,26 @@ public class AllergiesSceneController {
         }
 
     }
+
+    /**
+     * Updates allergies that are in the database
+     * @param e action event
+     */
     public void updateAllergies( ActionEvent e ){
         UserUpdater.updateAllergenInfo();
     }
 
-
+    /**
+     * Turns back to profile scene
+     * @param e action event
+     */
     public void back( ActionEvent e ){
         changeScene( "ProfileScene.fxml", e );
     }
 
+    // If this scene is displayed from register
+
+    // GUI variables
     @FXML
     private Button saveButton;
     @FXML
@@ -233,6 +262,9 @@ public class AllergiesSceneController {
     @FXML
     private Button proceedButton;
 
+    /**
+     * Changes visibility of the buttons
+     */
     public void fromRegister(){
         saveButton.setVisible(false);
         backButton.setVisible(false);
@@ -240,6 +272,10 @@ public class AllergiesSceneController {
         proceedButton.setVisible(true);
     }
 
+    /**
+     * Changes scene to menu and calls a method from MenuSceneController to initialize menu scene
+     * @param event action event
+     */
     public void changeScenetoMenu( ActionEvent event )  {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuScene.fxml"));
@@ -255,9 +291,18 @@ public class AllergiesSceneController {
         catch ( IOException e ){}
     }
 
+    /**
+     * ActionListener for skip button
+     * @param event action event
+     */
     public void changeSceneFromRegister( ActionEvent event )  {
         changeScenetoMenu( event );
     }
+
+    /**
+     * ActionListener for proceed button
+     * @param e action event
+     */
     public void proceed( ActionEvent e ){
         updateAllergies( e );
         changeScenetoMenu( e );

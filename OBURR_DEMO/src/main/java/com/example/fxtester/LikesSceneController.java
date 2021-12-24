@@ -1,3 +1,7 @@
+/**
+ * @EnesBektas
+ * java version 14.0.2
+ */
 package com.example.fxtester;
 
 import javafx.event.ActionEvent;
@@ -20,6 +24,12 @@ public class LikesSceneController {
 
     // Change scene
     Stage stage;
+
+    /**
+     * Changes current scene
+     * @param fxml fxml name of the next scene
+     * @param event action event
+     */
     public void changeScene( String fxml, ActionEvent event )  {
         try{
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -33,8 +43,7 @@ public class LikesSceneController {
 
     // Likes Scene
 
-
-
+    // GUI variables
     @FXML
     private CheckBox checkBox1;
     @FXML
@@ -123,13 +132,12 @@ public class LikesSceneController {
     @FXML
     private CheckBox userCheckBox10;
 
-
-
-
+    /**
+     * Selects check boxes according to information from database
+     */
     public void initialize(){
 
         ArrayList<Ingredient> tmp = UserUpdater.likesFromDatabase();
-        System.out.println(tmp);
         for( Ingredient i: tmp ){
             if( checkBox1.getText().equals( i.toString() ) ){
                 checkBox1.setSelected(true);
@@ -270,6 +278,10 @@ public class LikesSceneController {
         }
     }
 
+    /**
+     * Adds or removes liked item when a checkbox is clicked
+     * @param e action event
+     */
     public void likesCheckBoxListener( ActionEvent e ){
         CheckBox checkBox = ( CheckBox ) e.getSource();
         if( !checkBox.getText().equals( "Add Ingredient") ){
@@ -284,10 +296,18 @@ public class LikesSceneController {
 
     }
 
+    /**
+     * Updates likes that are in the database
+     * @param e action event
+     */
     public void updateLikes( ActionEvent e ){
         UserUpdater.updateLikedInfo();
     }
 
+    /**
+     * If user enters a new liked item, adds it to user interface
+     * @param e action event
+     */
     public void addIngredient( ActionEvent e ){
         String str = enterIngredient.getText();
         if ( userCheckBox1.getText().equals( "Add Ingredient" ) ){
@@ -310,10 +330,17 @@ public class LikesSceneController {
         }
     }
 
+    /**
+     * Turns back to profile scene
+     * @param e action event
+     */
     public void back( ActionEvent e ){
         changeScene( "ProfileScene.fxml", e );
     }
 
+    // If this scene is displayed from register
+
+    // GUI variables
     @FXML
     private Button saveButton;
     @FXML
@@ -323,6 +350,9 @@ public class LikesSceneController {
     @FXML
     private Button proceedButton;
 
+    /**
+     * Changes visibility of the buttons
+     */
     public void fromRegister(){
         saveButton.setVisible(false);
         backButton.setVisible(false);
@@ -330,6 +360,10 @@ public class LikesSceneController {
         proceedButton.setVisible(true);
     }
 
+    /**
+     * Changes scene to dislikes scene and calls a method from DislikesSceneController to initialize dislikes scene
+     * @param event action event
+     */
     public void changeSceneFromRegister( ActionEvent event )  {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DislikesScene.fxml"));
@@ -344,6 +378,11 @@ public class LikesSceneController {
         }
         catch ( IOException e ){}
     }
+
+    /**
+     * ActionListener for proceed button
+     * @param e action event
+     */
     public void proceed( ActionEvent e ){
         updateLikes( e );
         changeSceneFromRegister( e );

@@ -1,3 +1,7 @@
+/**
+ * @EnesBektas
+ * java version 14.0.2
+ */
 package com.example.fxtester;
 
 import javafx.embed.swing.SwingFXUtils;
@@ -20,6 +24,12 @@ public class AddedRecipesSceneController {
 
     // Change scene
     Stage stage;
+
+    /**
+     * Changes current scene
+     * @param fxml fxml name of the next scene
+     * @param event action event
+     */
     public void changeScene( String fxml, ActionEvent event )  {
         try{
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -33,6 +43,7 @@ public class AddedRecipesSceneController {
 
     // Added Recipes Scene
 
+    // GUI variables
     @FXML
     private ImageView imageView1;
     @FXML
@@ -58,6 +69,9 @@ public class AddedRecipesSceneController {
     @FXML
     private HBox hbox4;
 
+    /**
+     * Initializes scene according to added recipes by the current user
+     */
     public void initialize(){
         ArrayList<OburrRecipe> recipeList = UserUpdater.returnAddedRecipes();
         int size = recipeList.size();
@@ -102,7 +116,10 @@ public class AddedRecipesSceneController {
 
     }
 
-
+    /**
+     * Turns back to profile
+     * @param e action event
+     */
     public void back( ActionEvent e ){
         changeScene( "ProfileScene.fxml", e );
     }

@@ -1,3 +1,10 @@
+/**
+ *
+ * Executes the oburr application.
+ *
+ * @EnesBektas
+ * java version 14.0.2
+ */
 package com.example.fxtester;
 
 import javafx.application.Application;
@@ -8,8 +15,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Main extends Application {
-
-
 
     @Override
     public void start(Stage stage) throws IOException {

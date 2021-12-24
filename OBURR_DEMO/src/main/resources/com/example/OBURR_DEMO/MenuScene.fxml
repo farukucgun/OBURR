@@ -72,7 +72,7 @@
         </Button>
         <ImageView fx:id="menuLogo" fitHeight="51.0" fitWidth="92.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" visible="false">
             <image>
-                <Image url="@../../../logo_değiştirilmiş.png" />
+                <Image url="@../../../logo_color_changed.png" />
             </image>
         </ImageView>
       <Button fx:id="menuDiscoverButton" alignment="BOTTOM_LEFT" layoutY="216.0" mnemonicParsing="false" onAction="#toDiscoverScene" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #e9ffc8;" text="DISCOVER" visible="false">
