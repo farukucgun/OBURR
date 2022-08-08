@@ -1,8 +1,8 @@
 Oburr - Recipe app
 
 General info
-Oburr is a desktop application which aimed to finding recipes by users'
-preferrences and uploding users' own recipes.  
+Oburr is a desktop application which makes it possible to find recipes according to users'
+preferences and let users upload their own recipes.  
 
 Used technologies
 Java 17
